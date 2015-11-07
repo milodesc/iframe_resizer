@@ -1,0 +1,21 @@
+<?php
+
+/**
+* @file
+* Includes the iFrameResizer.js JavaScript plugin for fluid width and height iframes.
+*/
+
+/**
+* Implements hook_help().
+*/
+function iframe_resizer_help($path, $arg) {
+  switch ($path) {
+    case "admin/help#iframe_resizer":
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('iFrame Resizer is a JavaScript library which enables fluid width and height iframe embeds.') . '</p>';
+      $output .= '<p>' . t("The library enables the automatic resizing of the height and width of both same and cross domain iFrames to fit their contained content. It provides a range of features to address the most common issues with using iFrames. For full documentation on the library see the project's " . l('github page', 'https://github.com/davidjbradshaw/iframe-resizer') . '.');
+      return $output;
+    break;
+  }
+}
