@@ -1,1 +1,3 @@
 name = iFrame Resizer
+description = Provides access to the iFrame Resizer javascript library
+core = 7.x
