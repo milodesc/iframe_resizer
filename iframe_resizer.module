@@ -2,7 +2,7 @@
 
 /**
 * @file
-* Includes the iFrameResizer.js JavaScript plugin for fluid width and height iframes.
+* Includes the iFrameResizer.js JavaScript library for fluid width and height iframes.
 */
 
 /**
@@ -15,7 +15,18 @@ function iframe_resizer_help($path, $arg) {
       $output .= '<h3>' . t('About') . '</h3>';
       $output .= '<p>' . t('iFrame Resizer is a JavaScript library which enables fluid width and height iframe embeds.') . '</p>';
       $output .= '<p>' . t('The library enables the automatic resizing of the height and width of both same and cross domain iFrames to fit their contained content. It provides a range of features to address the most common issues with using iFrames. For full documentation on the library see the project\'s <a href="@github_page">github page</a>.', array('@github_page' => url('https://github.com/davidjbradshaw/iframe-resizer'))) . '</p>';
+      $output .= '<h3>' . t('Setup') . '</h3>';
+      $output .= '<p>' . t('To use the module, you must first download the JavaScript library from the project\'s <a href="@github_page">github page</a>. Unpack and rename the resulting directory "iframe_resizer" and place it in your Drupal installation\'s "sites/all/libraries" directory. Make sure the path to the library\'s main file becomes: "sites/all/libraries/iframe_resizer/js/iframeResizer.min.js".', array('@github_page' => url('https://github.com/davidjbradshaw/iframe-resizer'))) . '</p>';
       return $output;
     break;
   }
+}
+
+/**
+ * Implements hook_init().
+ */
+function iframe_resizer_init() {
+  drupal_add_js('sites/all/libraries/iframe_resizer/js/iframeResizer.js');
+  drupal_add_js('sites/all/libraries/iframe_resizer/js/iframeResizer.contentWindow.js');
+  drupal_add_js(drupal_get_path('module', 'iframe_resizer') . '/js/iframe_resizer.js');
 }
