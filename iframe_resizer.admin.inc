@@ -29,9 +29,14 @@ function iframe_resizer_admin_form($form, &$form_state) {
 
   $form['iframe_resizer_advanced'] = array(
     '#type' => 'fieldset',
-    '#title' => t('Advanced'),
+    '#title' => t('Advanced Options for Hosting Resizable iFrames'),
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
+    '#states' => array(
+      'visible' => array(
+        'input[name="iframe_resizer_host"]' => array('checked' => TRUE),
+      ),
+    ),
   );
   $form['iframe_resizer_advanced']['iframe_resizer_log'] = array(
     '#type' => 'checkbox',
@@ -55,6 +60,11 @@ function iframe_resizer_admin_form($form, &$form_state) {
       'lowestElement',
       'taggedElement',
     )),
+    '#states' => array(
+      'required' => array(
+        'input[name="iframe_resizer_host"]' => array('checked' => TRUE),
+      ),
+    ),
   );
 
   return system_settings_form($form);
