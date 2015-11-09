@@ -1,0 +1,14 @@
+<?php
+/**
+ * @file
+ * Installation and uninstallation functions.
+ */
+
+/**
+ * Implements hook_uninstall().
+ */
+function iframe_resizer_uninstall() {
+  // Delete created variables.
+  variable_del('iframe_resizer_host');
+  variable_del('iframe_resizer_hosted');
+}
