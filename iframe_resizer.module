@@ -64,6 +64,18 @@ function iframe_resizer_init() {
       'every_page' => TRUE,
       'requires_jquery' => FALSE,
     ));
+
+    // iFrame Resizer library options
+    $js_settings = array(
+      'log' => variable_get('iframe_resizer_log', FALSE),
+      'heightCalculationMethod' => variable_get('iframe_resizer_height_calculation_method', 'bodyOffset'),
+    );
+    drupal_add_js(array('iframe_resizer' => $js_settings), array(
+      'type' => 'setting',
+      'scope' => 'footer',
+      'group' => JS_DEFAULT,
+      'every_page' => TRUE,
+    ));
     drupal_add_js(drupal_get_path('module', 'iframe_resizer') . '/js/iframe_resizer.js', array(
       'scope' => 'footer',
       'group' => JS_DEFAULT,
