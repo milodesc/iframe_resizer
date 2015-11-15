@@ -66,12 +66,12 @@ function iframe_resizer_init() {
     ));
 
     $iframe_resizer_options = array(
-      'log' => variable_get('iframe_resizer_log', FALSE),
-      'heightCalculationMethod' => variable_get('iframe_resizer_height_calculation_method', 'bodyOffset'),
+      'log' => check_plain(variable_get('iframe_resizer_log', FALSE)),
+      'heightCalculationMethod' => check_plain(variable_get('iframe_resizer_height_calculation_method', 'bodyOffset')),
     );
     $iframe_resizer_target_specifiers = 'iframe';
     if(variable_get('iframe_resizer_target_type', 'iframe') != 'all_iframes') {
-      $iframe_resizer_target_specifiers = implode(', ', explode("\n", str_replace("\r", "", variable_get('iframe_resizer_target_specifiers', 'iframe'))));
+      $iframe_resizer_target_specifiers = check_plain(implode(', ', explode("\n", str_replace("\r", "", variable_get('iframe_resizer_target_specifiers', 'iframe')))));
     }
     drupal_add_js(array(
         'iframe_resizer_options' => $iframe_resizer_options,
