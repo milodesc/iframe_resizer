@@ -2,7 +2,7 @@
 
 /**
  * @file
- * iframe Resizer administration pages.
+ * Iframe Resizer administration pages.
  */
 
 /**
@@ -138,8 +138,8 @@ function iframe_resizer_admin_form($form, &$form_state) {
   return system_settings_form($form);
 }
 
-/*
- * Provides validation for the general configuration form
+/**
+ * Provides validation for the general configuration form.
  */
 function iframe_resizer_admin_form_validate($form, &$form_state) {
   if ($form_state['values']['iframe_resizer_target_type'] == 'specific' && empty($form_state['values']['iframe_resizer_target_specifiers'])) {
