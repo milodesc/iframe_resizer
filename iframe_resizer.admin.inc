@@ -38,6 +38,31 @@ function iframe_resizer_admin_form($form, &$form_state) {
       ),
     ),
   );
+
+  $form['iframe_resizer_advanced']['iframe_resizer_target_type'] = array(
+    '#type' => 'radios',
+    '#title' => t('Which iFrames should be targeted by the iFrame Resizer library?'),
+    '#default_value' => variable_get('iframe_resizer_target_type', 'all_iframes'),
+    '#options' => array('all_iframes' => t('All iFrames'), 'specific' => t('Specific iFrames')),
+  );
+  $form['iframe_resizer_advanced']['iframe_resizer_target_specifiers'] = array(
+    '#type' => 'textarea',
+    '#title' => t('Specify the iFrames which should be targeted by the iFrame Resizer library by supplying jQuery selectors.'),
+    '#default_value' => variable_get('iframe_resizer_target_specifiers', ''),
+    '#description' => t('Use one or more jQuery selectors (one per line) to specify which hosted iFrames should be targeted by the iFrame Resizer library.'),
+    '#states' => array(
+      'disabled' => array(
+        'input[name="iframe_resizer_target_type"]' => array('value' => 'all_iframes'),
+      ),
+      'enabled' => array(
+        'input[name="iframe_resizer_target_type"]' => array('value' => 'specific'),
+      ),
+      'required' => array(
+        'input[name="iframe_resizer_target_type"]' => array('value' => 'specific'),
+      ),
+    ),
+  );
+
   $form['iframe_resizer_advanced']['iframe_resizer_log'] = array(
     '#type' => 'checkbox',
     '#title' => t('Turn iFrame Resizer JavaScript console logging on.'),
@@ -67,5 +92,13 @@ function iframe_resizer_admin_form($form, &$form_state) {
     ),
   );
 
+  $form['#validate'][] = 'iframe_resizer_admin_form_validate';
+
   return system_settings_form($form);
+}
+
+function iframe_resizer_admin_form_validate($form, &$form_state) {
+  if ($form_state['values']['iframe_resizer_target_type'] == 'specific' && empty($form_state['values']['iframe_resizer_target_specifiers'])) {
+    form_set_error('iframe_resizer_target_specifiers', t('You must specify at least one jQuery selector.'));
+  }
 }
