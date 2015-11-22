@@ -81,6 +81,7 @@ function iframe_resizer_init() {
     drupal_add_js(array(
         'iframe_resizer_options' => $iframe_resizer_options,
         'iframe_resizer_target_specifiers' => $iframe_resizer_target_specifiers,
+        'iframe_resizer_override_defaults' => variable_get('iframe_resizer_override_defaults', FALSE),
       ),
       array(
         'type' => 'setting',
