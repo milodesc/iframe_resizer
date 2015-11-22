@@ -5,6 +5,38 @@
  */
 
 /**
+ * Implements hook_requirements().
+ */
+function iframe_resizer_requirements($phase) {
+  $requirements = array();
+  module_load_include('module', 'iframe_resizer');
+  $t = get_t();
+  $library_path = iframe_resizer_get_library_path();
+  switch($phase) {
+    case 'runtime':
+      if (!$library_path) {
+        $requirements['iframe_resizer_js'] = array(
+          'title' => $t('iFrame Resizer JavaScript file'),
+          'severity' => REQUIREMENT_ERROR,
+          'description' => $t('You need to download the !library and extract the entire contents of the archive into the %path directory on your server.', array(
+            '!library' => l($t('iFrame Resizer JavaScript file'), 'https://github.com/davidjbradshaw/iframe-resizer'),
+            '%path' => 'sites/all/libraries')),
+          'value' => $t('Not Installed'),
+        );
+      }
+      else {
+        $requirements['iframe_resizer_js'] = array(
+          'title' => $t('iFrame Resizer JavaScript file'),
+          'severity' => REQUIREMENT_OK,
+          'value' => $t('Installed'),
+        );
+      }
+      break;
+  }
+  return $requirements;
+}
+
+/**
  * Implements hook_uninstall().
  */
 function iframe_resizer_uninstall() {
