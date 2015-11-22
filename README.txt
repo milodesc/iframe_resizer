@@ -20,7 +20,8 @@ REQUIREMENTS
 ------------
 
 This module requires the iFrame Resizer javascript library to be installed in
-Drupal's 'sites/all/libraries' directory.
+Drupal's 'sites/all/libraries' directory (or the appropriate multisite or
+profiles directory).
 
 
 
