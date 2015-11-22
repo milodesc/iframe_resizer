@@ -9,6 +9,16 @@
  * Returns with the general configuration form.
  */
 function iframe_resizer_admin_form($form, &$form_state) {
+
+  $library_path = iframe_resizer_get_library_path();
+  if (!$library_path) {
+    drupal_set_message(t('You need to download the !library and extract the entire contents of the archive into the %path directory on your server.', array(
+      '!library' => l(t('iFrame Resizer JavaScript file'), 'https://github.com/davidjbradshaw/iframe-resizer'),
+      '%path' => 'sites/all/libraries')
+    ), 'error');
+    return;
+  }
+
   $form['iframe_resizer_usage'] = array(
     '#type' => 'fieldset',
     '#title' => t('iFrame Resizer Usage'),
