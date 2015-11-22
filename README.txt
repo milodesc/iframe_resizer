@@ -30,8 +30,9 @@ INSTALLATION
  * Download the library from https://github.com/davidjbradshaw/iframe-resizer
 
  * Unpack and rename the resulting directory "iframe_resizer" and place it in
-   your Drupal installation's "sites/all/libraries" directory. Make sure the
-   path to the library's main file becomes:
+   your Drupal installation's "sites/all/libraries" directory  (or appropriate
+   profile or multisite directory). Make sure the path to the library's main
+   file becomes:
    "sites/all/libraries/iframe_resizer/js/iframeResizer.min.js".
 
  * Install as you would normally install a contributed Drupal module. See:

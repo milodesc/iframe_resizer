@@ -16,7 +16,7 @@ function iframe_resizer_help($path, $arg) {
       $output .= '<p>' . t('iFrame Resizer is a JavaScript library which enables fluid width and height iframe embeds.') . '</p>';
       $output .= '<p>' . t('The library enables the automatic resizing of the height and width of both same and cross domain iFrames to fit their contained content. It provides a range of features to address the most common issues with using iFrames. For full documentation on the library see the project\'s <a href="@github_page">github page</a>.', array('@github_page' => url('https://github.com/davidjbradshaw/iframe-resizer'))) . '</p>';
       $output .= '<h3>' . t('Setup') . '</h3>';
-      $output .= '<p>' . t('To use the module, you must first download the JavaScript library from the project\'s <a href="@github_page">github page</a>. Unpack and rename the resulting directory "iframe_resizer" and place it in your Drupal installation\'s "sites/all/libraries" directory. Make sure the path to the library\'s main file becomes: "sites/all/libraries/iframe_resizer/js/iframeResizer.min.js".', array('@github_page' => url('https://github.com/davidjbradshaw/iframe-resizer'))) . '</p>';
+      $output .= '<p>' . t('To use the module, you must first download the JavaScript library from the project\'s <a href="@github_page">github page</a>. Unpack and rename the resulting directory "iframe_resizer" and place it in your Drupal installation\'s "sites/all/libraries" directory (or appropriate profile or multisite directory). Make sure the path to the library\'s main file becomes: "sites/all/libraries/iframe_resizer/js/iframeResizer.min.js".', array('@github_page' => url('https://github.com/davidjbradshaw/iframe-resizer'))) . '</p>';
       $output .= '<p>' . t('Once the library is in place, you can configure the module (see the link below).') . '</p>';
       return $output;
   }
@@ -57,7 +57,7 @@ function iframe_resizer_menu() {
 function iframe_resizer_init() {
   // If the site is hosting resizable iFrames, include the necessary JS.
   if (variable_get('iframe_resizer_host', FALSE)) {
-    drupal_add_js('sites/all/libraries/iframe_resizer/js/iframeResizer.js', array(
+    drupal_add_js(iframe_resizer_get_library_path() . '/js/iframeResizer.js', array(
       'scope' => 'footer',
       'group' => JS_LIBRARY,
       'every_page' => TRUE,
@@ -94,11 +94,42 @@ function iframe_resizer_init() {
   // If pages from this site will be hosted within pages made resizable by the
   // iFrame Resizable library, include the necessary JS.
   if (variable_get('iframe_resizer_hosted', FALSE)) {
-    drupal_add_js('sites/all/libraries/iframe_resizer/js/iframeResizer.contentWindow.js', array(
+    drupal_add_js(iframe_resizer_get_library_path() . '/js/iframeResizer.contentWindow.js', array(
       'scope' => 'footer',
       'group' => JS_LIBRARY,
       'every_page' => TRUE,
       'requires_jquery' => FALSE,
     ));
   }
+}
+
+/**
+ * Get the location of the iframe_resizer library.
+ *
+ * @return
+ *   The location of the library, or FALSE if the library isn't installed.
+ */
+function iframe_resizer_get_library_path() {
+
+  // The following logic is taken from libraries_get_libraries()
+  $searchdir = array();
+
+  // Similar to 'modules' and 'themes' directories inside an installation
+  // profile, installation profiles may want to place libraries into a
+  // 'libraries' directory.
+  $searchdir[] = 'profiles/' . drupal_get_profile() . '/libraries';
+
+  // Always search sites/all/libraries.
+  $searchdir[] = 'sites/all/libraries';
+
+  // Also search sites/<domain>/*.
+  $searchdir[] = conf_path() . '/libraries';
+
+  foreach ($searchdir as $dir) {
+    if (file_exists($dir . '/iframe_resizer/js/iframeResizer.contentWindow.js') && file_exists($dir . '/iframe_resizer/js/iframeResizer.js')) {
+      return $dir . '/iframe_resizer';
+    }
+  }
+
+  return FALSE;
 }
