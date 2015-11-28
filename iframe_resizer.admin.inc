@@ -143,6 +143,13 @@ function iframe_resizer_admin_form($form, &$form_state) {
     ),
   );
 
+  $form['iframe_resizer_advanced']['iframe_resizer_options']['iframe_resizer_autoresize'] = array (
+    '#type' => 'checkbox',
+    '#title' => t('Automatically resize the iFrame when its DOM changes.'),
+    '#description' => t('Checked by default'),
+    '#default_value' => variable_get('iframe_resizer_autoresize', TRUE),
+  );
+
   $form['#validate'][] = 'iframe_resizer_admin_form_validate';
 
   return system_settings_form($form);

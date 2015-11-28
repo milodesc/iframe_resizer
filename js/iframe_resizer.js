@@ -6,7 +6,8 @@
         options = {
             log: settings.iframe_resizer_options.log == 1,
             heightCalculationMethod: settings.iframe_resizer_options.heightCalculationMethod,
-            widthCalculationMethod: settings.iframe_resizer_options.widthCalculationMethod
+            widthCalculationMethod: settings.iframe_resizer_options.widthCalculationMethod,
+            autoResize: settings.iframe_resizer_options.autoResize == 1
         };
       }
       $(settings.iframe_resizer_target_specifiers, context).iFrameResize(options);
