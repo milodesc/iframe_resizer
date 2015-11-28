@@ -75,6 +75,7 @@ function iframe_resizer_init() {
       'widthCalculationMethod' => check_plain(variable_get('iframe_resizer_width_calculation_method', 'scroll')),
       'autoResize' => check_plain(variable_get('iframe_resizer_autoresize', TRUE)),
       'bodyBackground' => check_plain(trim(variable_get('iframe_resizer_bodybackground', ''))),
+      'bodyMargin' => check_plain(trim(variable_get('iframe_resizer_bodymargin', ''))),
     );
     $iframe_resizer_target_specifiers = 'iframe';
     if (variable_get('iframe_resizer_target_type', 'iframe') != 'all_iframes') {

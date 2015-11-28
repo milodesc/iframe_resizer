@@ -157,6 +157,13 @@ function iframe_resizer_admin_form($form, &$form_state) {
     '#default_value' => variable_get('iframe_resizer_bodybackground', ''),
   );
 
+  $form['iframe_resizer_advanced']['iframe_resizer_options']['iframe_resizer_bodymargin'] = array (
+    '#type' => 'textfield',
+    '#title' => t('iFrame body margin CSS'),
+    '#description' => t("Override the iFrame's body's margin styles. Leave blank to use the iFrame's default body margin styles."),
+    '#default_value' => variable_get('iframe_resizer_bodymargin', ''),
+  );
+
   $form['#validate'][] = 'iframe_resizer_admin_form_validate';
 
   return system_settings_form($form);
