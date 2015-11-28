@@ -50,4 +50,5 @@ function iframe_resizer_uninstall() {
   variable_del('iframe_resizer_autoresize');
   variable_del('iframe_resizer_target_type');
   variable_del('iframe_resizer_target_specifiers');
+  variable_del('iframe_resizer_bodybackground');
 }

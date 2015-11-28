@@ -150,6 +150,13 @@ function iframe_resizer_admin_form($form, &$form_state) {
     '#default_value' => variable_get('iframe_resizer_autoresize', TRUE),
   );
 
+  $form['iframe_resizer_advanced']['iframe_resizer_options']['iframe_resizer_bodybackground'] = array (
+    '#type' => 'textfield',
+    '#title' => t('iFrame body background CSS'),
+    '#description' => t("Override the body background style of the iFrame. Leave blank to use the iFrame's default background."),
+    '#default_value' => variable_get('iframe_resizer_bodybackground', ''),
+  );
+
   $form['#validate'][] = 'iframe_resizer_admin_form_validate';
 
   return system_settings_form($form);
