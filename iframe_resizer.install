@@ -52,4 +52,5 @@ function iframe_resizer_uninstall() {
   variable_del('iframe_resizer_target_specifiers');
   variable_del('iframe_resizer_bodybackground');
   variable_del('iframe_resizer_bodymargin');
+  variable_del('iframe_resizer_inpagelinks');
 }

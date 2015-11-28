@@ -164,6 +164,12 @@ function iframe_resizer_admin_form($form, &$form_state) {
     '#default_value' => variable_get('iframe_resizer_bodymargin', ''),
   );
 
+  $form['iframe_resizer_advanced']['iframe_resizer_options']['iframe_resizer_inpagelinks'] = array (
+    '#type' => 'checkbox',
+    '#title' => t('Enable in page linking inside the iFrame and from the iFrame to the parent page'),
+    '#default_value' => variable_get('iframe_resizer_inpagelinks', FALSE),
+  );
+
   $form['#validate'][] = 'iframe_resizer_admin_form_validate';
 
   return system_settings_form($form);

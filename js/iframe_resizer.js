@@ -15,7 +15,8 @@
             widthCalculationMethod: settings.iframe_resizer_options.widthCalculationMethod,
             autoResize: settings.iframe_resizer_options.autoResize == 1,
             bodyBackground: settings.iframe_resizer_options.bodyBackground,
-            bodyMargin: settings.iframe_resizer_options.bodyMargin
+            bodyMargin: settings.iframe_resizer_options.bodyMargin,
+            inPageLinks: settings.iframe_resizer_options.inPageLinks == 1
         };
       }
       $(settings.iframe_resizer_target_specifiers, context).iFrameResize(options);
