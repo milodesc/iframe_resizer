@@ -170,6 +170,15 @@ function iframe_resizer_admin_form($form, &$form_state) {
     '#default_value' => variable_get('iframe_resizer_inpagelinks', FALSE),
   );
 
+  $form['iframe_resizer_advanced']['iframe_resizer_options']['iframe_resizer_interval'] = array (
+    '#type' => 'textfield',
+    '#title' => t('Page size change check interval'),
+    '#description' => t("How often to check (in milliseconds) for page size changes in browsers which don't support mutationObserver. Default is 32. Setting this property to a negative number will force the interval check to run instead of mutationObserver. Set to zero to disable."),
+    '#default_value' => variable_get('iframe_resizer_interval', 32),
+    '#element_validate' => array('element_validate_integer'),
+    '#size' => 5,
+  );
+
   $form['#validate'][] = 'iframe_resizer_admin_form_validate';
 
   return system_settings_form($form);
