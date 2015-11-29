@@ -179,6 +179,15 @@ function iframe_resizer_admin_form($form, &$form_state) {
     '#size' => 5,
   );
 
+  $form['iframe_resizer_advanced']['iframe_resizer_options']['iframe_resizer_maxheight'] = array (
+    '#type' => 'textfield',
+    '#title' => t('Maximum height of the iFrame'),
+    '#description' => t("Leave blank or set to 'Infinity' to set no maximum, the default."),
+    '#default_value' => variable_get('iframe_resizer_maxheight', 'Infinity'),
+    '#element_validate' => array('iframe_resizer_element_validate_positive_integer_zero_infinity'),
+    '#size' => 8,
+  );
+
   $form['#validate'][] = 'iframe_resizer_admin_form_validate';
 
   return system_settings_form($form);
@@ -190,5 +199,18 @@ function iframe_resizer_admin_form($form, &$form_state) {
 function iframe_resizer_admin_form_validate($form, &$form_state) {
   if ($form_state['values']['iframe_resizer_target_type'] == 'specific' && empty($form_state['values']['iframe_resizer_target_specifiers'])) {
     form_set_error('iframe_resizer_target_specifiers', t('You must specify at least one jQuery selector.'));
+  }
+}
+
+/**
+ * Form element validation handler for integer elements that must be positive, zero or 'infinity'.
+ */
+function iframe_resizer_element_validate_positive_integer_zero_infinity($element, &$form_state) {
+  $value = $element['#value'];
+  if (strcasecmp($value, 'infinity') == 0) {
+    return;
+  }
+  if ($value !== '' && (!is_numeric($value) || intval($value) != $value || $value < 0)) {
+    form_error($element, t("%name must be an integer or 'Infinity'.", array('%name' => $element['#title'])));
   }
 }
