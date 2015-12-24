@@ -6,7 +6,7 @@
  */
 
 /**
- * Define iFrame Resizer library url
+ * Define iFrame Resizer library url.
  */
 define('IFRAME_RESIZER_LIBRARY_URL', 'https://github.com/davidjbradshaw/iframe-resizer');
 
@@ -57,9 +57,9 @@ function iframe_resizer_menu() {
 }
 
 /**
- * Implements hook_init().
+ * Implements hook_page_build().
  */
-function iframe_resizer_init() {
+function iframe_resizer_page_build(&$page) {
   // If the site is hosting resizable iFrames, include the necessary JS.
   if (variable_get('iframe_resizer_host', FALSE)) {
     drupal_add_js(iframe_resizer_get_library_path() . '/js/iframeResizer.js', array(
@@ -118,7 +118,7 @@ function iframe_resizer_init() {
 /**
  * Get the location of the iframe_resizer library.
  *
- * @return
+ * @return bool
  *   The location of the library, or FALSE if the library isn't installed.
  */
 function iframe_resizer_get_library_path() {
