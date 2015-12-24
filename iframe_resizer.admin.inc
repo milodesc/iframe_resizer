@@ -14,7 +14,8 @@ function iframe_resizer_admin_form($form, &$form_state) {
   if (!$library_path) {
     drupal_set_message(t('You need to download the !library and extract the entire contents of the archive into the %path directory on your server.', array(
       '!library' => l(t('iFrame Resizer JavaScript file'), IFRAME_RESIZER_LIBRARY_URL),
-      '%path' => 'sites/all/libraries')
+      '%path' => 'sites/all/libraries'
+      )
     ), 'error');
     return;
   }
@@ -22,13 +23,13 @@ function iframe_resizer_admin_form($form, &$form_state) {
   $form['iframe_resizer_usage'] = array(
     '#type' => 'fieldset',
     '#title' => t('iFrame Resizer Usage'),
-    '#description' => t('At least one of the options below should be chosen. Otherwise, this module won\'t do anything.'),
+    '#description' => t("At least one of the options below should be chosen. Otherwise, this module won't do anything."),
   );
   $form['iframe_resizer_usage']['iframe_resizer_host'] = array(
     '#type' => 'checkbox',
     '#title' => t('This site will host resizable iFrames.'),
     '#default_value' => variable_get('iframe_resizer_host', FALSE),
-    '#description' => t('Enable this option if the iFrames being included in this site should be resizable (Note that the site being iFramed in will need to include the iFrame Resizer library\'s iframeResizer.contentWindow.js file).'),
+    '#description' => t("Enable this option if the iFrames being included in this site should be resizable (Note that the site being iFramed in will need to include the iFrame Resizer library's iframeResizer.contentWindow.js file)."),
   );
   $form['iframe_resizer_usage']['iframe_resizer_hosted'] = array(
     '#type' => 'checkbox',
@@ -88,7 +89,7 @@ function iframe_resizer_admin_form($form, &$form_state) {
       'visible' => array(
         'input[name="iframe_resizer_override_defaults"]' => array('checked' => TRUE),
       ),
-    )
+    ),
   );
   $form['iframe_resizer_advanced']['iframe_resizer_options']['iframe_resizer_log'] = array(
     '#type' => 'checkbox',
@@ -143,34 +144,34 @@ function iframe_resizer_admin_form($form, &$form_state) {
     ),
   );
 
-  $form['iframe_resizer_advanced']['iframe_resizer_options']['iframe_resizer_autoresize'] = array (
+  $form['iframe_resizer_advanced']['iframe_resizer_options']['iframe_resizer_autoresize'] = array(
     '#type' => 'checkbox',
     '#title' => t('Automatically resize the iFrame when its DOM changes.'),
     '#description' => t('Checked by default'),
     '#default_value' => variable_get('iframe_resizer_autoresize', TRUE),
   );
 
-  $form['iframe_resizer_advanced']['iframe_resizer_options']['iframe_resizer_bodybackground'] = array (
+  $form['iframe_resizer_advanced']['iframe_resizer_options']['iframe_resizer_bodybackground'] = array(
     '#type' => 'textfield',
     '#title' => t('iFrame body background CSS'),
     '#description' => t("Override the body background style of the iFrame. Leave blank to use the iFrame's default background."),
     '#default_value' => variable_get('iframe_resizer_bodybackground', ''),
   );
 
-  $form['iframe_resizer_advanced']['iframe_resizer_options']['iframe_resizer_bodymargin'] = array (
+  $form['iframe_resizer_advanced']['iframe_resizer_options']['iframe_resizer_bodymargin'] = array(
     '#type' => 'textfield',
     '#title' => t('iFrame body margin CSS'),
     '#description' => t("Override the iFrame's body's margin styles. Leave blank to use the iFrame's default body margin styles."),
     '#default_value' => variable_get('iframe_resizer_bodymargin', ''),
   );
 
-  $form['iframe_resizer_advanced']['iframe_resizer_options']['iframe_resizer_inpagelinks'] = array (
+  $form['iframe_resizer_advanced']['iframe_resizer_options']['iframe_resizer_inpagelinks'] = array(
     '#type' => 'checkbox',
     '#title' => t('Enable in page linking inside the iFrame and from the iFrame to the parent page'),
     '#default_value' => variable_get('iframe_resizer_inpagelinks', FALSE),
   );
 
-  $form['iframe_resizer_advanced']['iframe_resizer_options']['iframe_resizer_interval'] = array (
+  $form['iframe_resizer_advanced']['iframe_resizer_options']['iframe_resizer_interval'] = array(
     '#type' => 'textfield',
     '#title' => t('Page size change check interval'),
     '#description' => t("How often to check (in milliseconds) for page size changes in browsers which don't support mutationObserver. Default is 32. Setting this property to a negative number will force the interval check to run instead of mutationObserver. Set to zero to disable."),
@@ -179,7 +180,7 @@ function iframe_resizer_admin_form($form, &$form_state) {
     '#size' => 5,
   );
 
-  $form['iframe_resizer_advanced']['iframe_resizer_options']['iframe_resizer_maxheight'] = array (
+  $form['iframe_resizer_advanced']['iframe_resizer_options']['iframe_resizer_maxheight'] = array(
     '#type' => 'textfield',
     '#title' => t('Maximum height of the iFrame'),
     '#description' => t("Leave blank or set to 'Infinity' to set no maximum, the default."),
@@ -203,7 +204,7 @@ function iframe_resizer_admin_form_validate($form, &$form_state) {
 }
 
 /**
- * Form element validation handler for integer elements that must be positive, zero or 'infinity'.
+ * Validation handler for elements that must be positive, zero or 'infinity'.
  */
 function iframe_resizer_element_validate_positive_integer_zero_infinity($element, &$form_state) {
   $value = $element['#value'];
