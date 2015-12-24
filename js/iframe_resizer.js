@@ -1,3 +1,8 @@
+/**
+ * @file
+ * Resizes the page's iframe according to the module's configuration.
+ */
+
 (function ($) {
 
   "use strict";
