@@ -72,4 +72,3 @@ MAINTAINERS
 
 Current maintainers:
  * Patrick Jensen (milodesc) - https://www.drupal.org/user/1498524
- 
