@@ -60,4 +60,5 @@ function iframe_resizer_uninstall() {
   variable_del('iframe_resizer_minheight');
   variable_del('iframe_resizer_minwidth');
   variable_del('iframe_resizer_resizefrom');
+  variable_del('iframe_resizer_scrolling');
 }
