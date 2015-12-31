@@ -52,7 +52,8 @@
           minHeight: parseInt(settings.iframe_resizer_options.minHeight),
           minWidth: parseInt(settings.iframe_resizer_options.minWidth),
           resizeFrom: settings.iframe_resizer_options.resizeFrom,
-          scrolling: parseInt(settings.iframe_resizer_options.scrolling) === 1
+          scrolling: parseInt(settings.iframe_resizer_options.scrolling) === 1,
+          sizeHeight: parseInt(settings.iframe_resizer_options.sizeHeight) === 1
         };
       }
       $(settings.iframe_resizer_target_specifiers, context).iFrameResize(options);
