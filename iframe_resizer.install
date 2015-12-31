@@ -56,4 +56,5 @@ function iframe_resizer_uninstall() {
   variable_del('iframe_resizer_inpagelinks');
   variable_del('iframe_resizer_interval');
   variable_del('iframe_resizer_maxheight');
+  variable_del('iframe_resizer_maxwidth');
 }

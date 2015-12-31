@@ -26,6 +26,12 @@
         else {
           settings.iframe_resizer_options.maxHeight = parseInt(settings.iframe_resizer_options.maxHeight);
         }
+        if (settings.iframe_resizer_options.maxWidth === '' || settings.iframe_resizer_options.maxWidth.toUpperCase() === 'infinity'.toUpperCase()) {
+          settings.iframe_resizer_options.maxWidth = Infinity;
+        }
+        else {
+          settings.iframe_resizer_options.maxWidth = parseInt(settings.iframe_resizer_options.maxWidth);
+        }
         options = {
           log: parseInt(settings.iframe_resizer_options.log) === 1,
           heightCalculationMethod: settings.iframe_resizer_options.heightCalculationMethod,
@@ -35,7 +41,8 @@
           bodyMargin: settings.iframe_resizer_options.bodyMargin,
           inPageLinks: parseInt(settings.iframe_resizer_options.inPageLinks) === 1,
           interval: parseInt(settings.iframe_resizer_options.interval),
-          maxHeight: settings.iframe_resizer_options.maxHeight
+          maxHeight: settings.iframe_resizer_options.maxHeight,
+          maxWidth: settings.iframe_resizer_options.maxWidth
         };
       }
       $(settings.iframe_resizer_target_specifiers, context).iFrameResize(options);
