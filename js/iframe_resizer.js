@@ -38,6 +38,9 @@
         if (settings.iframe_resizer_options.minWidth === '') {
           settings.iframe_resizer_options.minWidth = 0;
         }
+        if (settings.iframe_resizer_options.tolerance === '') {
+          settings.iframe_resizer_options.tolerance = 0;
+        }
         options = {
           log: parseInt(settings.iframe_resizer_options.log) === 1,
           heightCalculationMethod: settings.iframe_resizer_options.heightCalculationMethod,
@@ -54,7 +57,8 @@
           resizeFrom: settings.iframe_resizer_options.resizeFrom,
           scrolling: parseInt(settings.iframe_resizer_options.scrolling) === 1,
           sizeHeight: parseInt(settings.iframe_resizer_options.sizeHeight) === 1,
-          sizeWidth: parseInt(settings.iframe_resizer_options.sizeWidth) === 1
+          sizeWidth: parseInt(settings.iframe_resizer_options.sizeWidth) === 1,
+          tolerance: parseInt(settings.iframe_resizer_options.tolerance)
         };
       }
       $(settings.iframe_resizer_target_specifiers, context).iFrameResize(options);

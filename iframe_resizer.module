@@ -86,6 +86,7 @@ function iframe_resizer_page_build(&$page) {
       'scrolling' => check_plain(variable_get('iframe_resizer_scrolling', FALSE)),
       'sizeHeight' => check_plain(variable_get('iframe_resizer_sizeheight', TRUE)),
       'sizeWidth' => check_plain(variable_get('iframe_resizer_sizewidth', FALSE)),
+      'tolerance' => check_plain(variable_get('iframe_resizer_tolerance', 0)),
     );
     $iframe_resizer_target_specifiers = 'iframe';
     if (variable_get('iframe_resizer_target_type', 'iframe') != 'all_iframes') {

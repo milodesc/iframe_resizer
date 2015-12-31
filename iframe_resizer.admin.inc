@@ -253,6 +253,20 @@ function iframe_resizer_admin_form($form, &$form_state) {
     '#description' => t('Disabled by default.'),
   );
 
+  $form['iframe_resizer_advanced']['iframe_resizer_options']['iframe_resizer_tolerance'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Tolerance'),
+    '#description' => t('Set the number of pixels the iFrame content size has to change by, before triggering a resize of the iFrame. Default is 0.'),
+    '#default_value' => variable_get('iframe_resizer_tolerance', 0),
+    '#element_validate' => array('iframe_resizer_element_validate_positive_integer_zero'),
+    '#size' => 8,
+    '#states' => array(
+      'required' => array(
+        'input[name="iframe_resizer_override_defaults"]' => array('checked' => TRUE),
+      ),
+    ),
+  );
+
   $form['#validate'][] = 'iframe_resizer_admin_form_validate';
 
   return system_settings_form($form);
