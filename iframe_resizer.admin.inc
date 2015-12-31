@@ -207,6 +207,15 @@ function iframe_resizer_admin_form($form, &$form_state) {
     '#size' => 8,
   );
 
+  $form['iframe_resizer_advanced']['iframe_resizer_options']['iframe_resizer_minwidth'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Minimum width of the iFrame'),
+    '#description' => t('Leave blank or set to 0 to set no minimum, the default.'),
+    '#default_value' => variable_get('iframe_resizer_minwidth', 0),
+    '#element_validate' => array('iframe_resizer_element_validate_positive_integer_zero'),
+    '#size' => 8,
+  );
+
   $form['#validate'][] = 'iframe_resizer_admin_form_validate';
 
   return system_settings_form($form);

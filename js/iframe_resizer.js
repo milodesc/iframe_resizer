@@ -32,6 +32,9 @@
         else {
           settings.iframe_resizer_options.maxWidth = parseInt(settings.iframe_resizer_options.maxWidth);
         }
+        if (settings.iframe_resizer_options.minWidth === '') {
+          settings.iframe_resizer_options.minWidth = 0;
+        }
         options = {
           log: parseInt(settings.iframe_resizer_options.log) === 1,
           heightCalculationMethod: settings.iframe_resizer_options.heightCalculationMethod,
@@ -43,7 +46,8 @@
           interval: parseInt(settings.iframe_resizer_options.interval),
           maxHeight: settings.iframe_resizer_options.maxHeight,
           maxWidth: settings.iframe_resizer_options.maxWidth,
-          minHeight: parseInt(settings.iframe_resizer_options.minHeight)
+          minHeight: parseInt(settings.iframe_resizer_options.minHeight),
+          minWidth: parseInt(settings.iframe_resizer_options.minWidth)
         };
       }
       $(settings.iframe_resizer_target_specifiers, context).iFrameResize(options);

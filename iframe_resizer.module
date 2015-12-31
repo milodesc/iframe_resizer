@@ -81,6 +81,7 @@ function iframe_resizer_page_build(&$page) {
       'maxHeight' => check_plain(variable_get('iframe_resizer_maxheight', 'Infinity')),
       'maxWidth' => check_plain(variable_get('iframe_resizer_maxwidth', 'Infinity')),
       'minHeight' => check_plain(variable_get('iframe_resizer_minheight', 0)),
+      'minWidth' => check_plain(variable_get('iframe_resizer_minwidth', 0)),
     );
     $iframe_resizer_target_specifiers = 'iframe';
     if (variable_get('iframe_resizer_target_type', 'iframe') != 'all_iframes') {
