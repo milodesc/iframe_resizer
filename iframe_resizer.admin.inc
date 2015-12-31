@@ -216,6 +216,22 @@ function iframe_resizer_admin_form($form, &$form_state) {
     '#size' => 8,
   );
 
+  $form['iframe_resizer_advanced']['iframe_resizer_options']['iframe_resizer_resizefrom'] = array(
+    '#type' => 'select',
+    '#title' => t('Resize event listener'),
+    '#description' => t('Listen for resize events from the parent page, or the iFrame.'),
+    '#default_value' => variable_get('iframe_resizer_resizefrom', 'parent'),
+    '#options' => array(
+      'parent' => 'Use library default (parent)',
+      'child' => 'child',
+    ),
+    '#states' => array(
+      'required' => array(
+        'input[name="iframe_resizer_override_defaults"]' => array('checked' => TRUE),
+      ),
+    ),
+  );
+
   $form['#validate'][] = 'iframe_resizer_admin_form_validate';
 
   return system_settings_form($form);

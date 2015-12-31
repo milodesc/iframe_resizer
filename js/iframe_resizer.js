@@ -50,7 +50,8 @@
           maxHeight: settings.iframe_resizer_options.maxHeight,
           maxWidth: settings.iframe_resizer_options.maxWidth,
           minHeight: parseInt(settings.iframe_resizer_options.minHeight),
-          minWidth: parseInt(settings.iframe_resizer_options.minWidth)
+          minWidth: parseInt(settings.iframe_resizer_options.minWidth),
+          resizeFrom: settings.iframe_resizer_options.resizeFrom
         };
       }
       $(settings.iframe_resizer_target_specifiers, context).iFrameResize(options);
