@@ -32,6 +32,9 @@
         else {
           settings.iframe_resizer_options.maxWidth = parseInt(settings.iframe_resizer_options.maxWidth);
         }
+        if (settings.iframe_resizer_options.minHeight === '') {
+          settings.iframe_resizer_options.minHeight = 0;
+        }
         if (settings.iframe_resizer_options.minWidth === '') {
           settings.iframe_resizer_options.minWidth = 0;
         }
