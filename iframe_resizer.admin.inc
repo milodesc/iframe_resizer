@@ -246,6 +246,13 @@ function iframe_resizer_admin_form($form, &$form_state) {
     '#description' => t('Enabled by default.'),
   );
 
+  $form['iframe_resizer_advanced']['iframe_resizer_options']['iframe_resizer_sizewidth'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Resize iFrame to content width.'),
+    '#default_value' => variable_get('iframe_resizer_sizewidth', FALSE),
+    '#description' => t('Disabled by default.'),
+  );
+
   $form['#validate'][] = 'iframe_resizer_admin_form_validate';
 
   return system_settings_form($form);
