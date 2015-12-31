@@ -198,6 +198,15 @@ function iframe_resizer_admin_form($form, &$form_state) {
     '#size' => 8,
   );
 
+  $form['iframe_resizer_advanced']['iframe_resizer_options']['iframe_resizer_minheight'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Minimum height of the iFrame'),
+    '#description' => t('Leave blank or set to 0 to set no minimum, the default.'),
+    '#default_value' => variable_get('iframe_resizer_minheight', 0),
+    '#element_validate' => array('iframe_resizer_element_validate_positive_integer_zero'),
+    '#size' => 8,
+  );
+
   $form['#validate'][] = 'iframe_resizer_admin_form_validate';
 
   return system_settings_form($form);
@@ -222,5 +231,15 @@ function iframe_resizer_element_validate_positive_integer_zero_infinity($element
   }
   if ($value !== '' && (!is_numeric($value) || intval($value) != $value || $value < 0)) {
     form_error($element, t("%name must be an integer or 'Infinity'.", array('%name' => $element['#title'])));
+  }
+}
+
+/**
+ * Validation handler for elements that must be positive integer or zero.
+ */
+function iframe_resizer_element_validate_positive_integer_zero($element, &$form_state) {
+  $value = $element['#value'];
+  if ($value !== '' && (!is_numeric($value) || intval($value) != $value || $value < 0)) {
+    form_error($element, t('%name must be a positive integer or zero.', array('%name' => $element['#title'])));
   }
 }

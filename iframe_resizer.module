@@ -80,6 +80,7 @@ function iframe_resizer_page_build(&$page) {
       'interval' => check_plain(variable_get('iframe_resizer_interval', 32)),
       'maxHeight' => check_plain(variable_get('iframe_resizer_maxheight', 'Infinity')),
       'maxWidth' => check_plain(variable_get('iframe_resizer_maxwidth', 'Infinity')),
+      'minHeight' => check_plain(variable_get('iframe_resizer_minheight', 0)),
     );
     $iframe_resizer_target_specifiers = 'iframe';
     if (variable_get('iframe_resizer_target_type', 'iframe') != 'all_iframes') {

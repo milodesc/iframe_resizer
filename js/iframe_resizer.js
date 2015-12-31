@@ -42,7 +42,8 @@
           inPageLinks: parseInt(settings.iframe_resizer_options.inPageLinks) === 1,
           interval: parseInt(settings.iframe_resizer_options.interval),
           maxHeight: settings.iframe_resizer_options.maxHeight,
-          maxWidth: settings.iframe_resizer_options.maxWidth
+          maxWidth: settings.iframe_resizer_options.maxWidth,
+          minHeight: parseInt(settings.iframe_resizer_options.minHeight)
         };
       }
       $(settings.iframe_resizer_target_specifiers, context).iFrameResize(options);
