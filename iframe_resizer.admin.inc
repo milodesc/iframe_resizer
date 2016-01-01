@@ -284,6 +284,21 @@ function iframe_resizer_admin_form_validate($form, &$form_state) {
   if ($form_state['values']['iframe_resizer_target_type'] == 'specific' && empty($form_state['values']['iframe_resizer_target_specifiers'])) {
     form_set_error('iframe_resizer_target_specifiers', t('You must specify at least one jQuery selector.'));
   }
+
+  if ($form_state['values']['iframe_resizer_override_defaults'] !== 0) {
+    $fields_reqd_override = array();
+    foreach ($form['iframe_resizer_advanced']['iframe_resizer_options'] as $field_name => $field_value) {
+      if (isset($field_value['#states']['required']['input[name="iframe_resizer_override_defaults"]']['checked']) && $field_value['#states']['required']['input[name="iframe_resizer_override_defaults"]']['checked'] === TRUE) {
+        $fields_reqd_override[$field_name] = $field_value['#title'];
+      }
+    }
+    $field_reqd_msg = '!name field is required.';
+    foreach ($fields_reqd_override as $field_name => $field_title) {
+      if (trim($form_state['values'][$field_name]) === '') {
+        form_set_error($field_name, t($field_reqd_msg, array('!name' => $field_title)));
+      }
+    }
+  }
 }
 
 /**
