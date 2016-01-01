@@ -178,6 +178,11 @@ function iframe_resizer_admin_form($form, &$form_state) {
     '#default_value' => variable_get('iframe_resizer_interval', 32),
     '#element_validate' => array('element_validate_integer'),
     '#size' => 5,
+    '#states' => array(
+      'required' => array(
+        'input[name="iframe_resizer_override_defaults"]' => array('checked' => TRUE),
+      ),
+    ),
   );
 
   $form['iframe_resizer_advanced']['iframe_resizer_options']['iframe_resizer_maxheight'] = array(
