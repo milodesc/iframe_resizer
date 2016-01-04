@@ -227,8 +227,8 @@ function iframe_resizer_admin_form($form, &$form_state) {
     '#description' => t('Listen for resize events from the parent page, or the iFrame.'),
     '#default_value' => variable_get('iframe_resizer_resizefrom', 'parent'),
     '#options' => array(
-      'parent' => 'Use library default (parent)',
-      'child' => 'child',
+      'parent' => t('Use library default (parent)'),
+      'child' => t('child'),
     ),
     '#states' => array(
       'required' => array(
@@ -292,10 +292,9 @@ function iframe_resizer_admin_form_validate($form, &$form_state) {
         $fields_reqd_override[$field_name] = $field_value['#title'];
       }
     }
-    $field_reqd_msg = '!name field is required.';
     foreach ($fields_reqd_override as $field_name => $field_title) {
       if (trim($form_state['values'][$field_name]) === '') {
-        form_set_error($field_name, t($field_reqd_msg, array('!name' => $field_title)));
+        form_set_error($field_name, t('!name field is required.', array('!name' => $field_title)));
       }
     }
   }
