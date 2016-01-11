@@ -48,6 +48,7 @@ function iframe_resizer_admin_form($form, &$form_state) {
         'input[name="iframe_resizer_host"]' => array('checked' => TRUE),
       ),
     ),
+    '#description' => 'Advanced options to be applied when this site will be hosting resizeable iFrames.',
   );
 
   $form['iframe_resizer_advanced']['iframe_resizer_target_type'] = array(
@@ -270,6 +271,26 @@ function iframe_resizer_admin_form($form, &$form_state) {
         'input[name="iframe_resizer_override_defaults"]' => array('checked' => TRUE),
       ),
     ),
+  );
+
+  $form['iframe_resizer_advanced_hosted_options'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Advanced Options for Hosted Resizable iFrames'),
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
+    '#states' => array(
+      'visible' => array(
+        'input[name="iframe_resizer_hosted"]' => array('checked' => TRUE),
+      ),
+    ),
+    '#description' => 'Advanced options to be applied when this site will be hosted within a resizeable iFrame.',
+  );
+
+  $form['iframe_resizer_advanced_hosted_options']['iframe_resizer_targetorigin'] = array(
+    '#type' => 'textfield',
+    '#title' => t('targetOrigin'),
+    '#description' => t("Restrict the domain of the parent page to prevent other sites mimicing your parent page. Include protocol ('http://' or 'https://')."),
+    '#default_value' => variable_get('iframe_resizer_targetorigin', ''),
   );
 
   $form['#validate'][] = 'iframe_resizer_admin_form_validate';
