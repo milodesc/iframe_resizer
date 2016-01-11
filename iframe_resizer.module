@@ -115,9 +115,9 @@ function iframe_resizer_page_build(&$page) {
   // iFrame Resizable library, include the necessary JS.
   if (variable_get('iframe_resizer_hosted', FALSE)) {
 
-    drupal_add_js(array('iframe_resizer_targetorigin' => variable_get('iframe_resizer_targetorigin', '')), array('type' => 'setting'));
-    drupal_add_js(array('iframe_resizer_hosted_width_calculation_method' => variable_get('iframe_resizer_hosted_width_calculation_method', '')), array('type' => 'setting'));
-    drupal_add_js(array('iframe_resizer_hosted_height_calculation_method' => variable_get('iframe_resizer_hosted_height_calculation_method', '')), array('type' => 'setting'));
+    drupal_add_js(array('iframe_resizer_targetorigin' => check_plain(variable_get('iframe_resizer_targetorigin', ''))), array('type' => 'setting'));
+    drupal_add_js(array('iframe_resizer_hosted_width_calculation_method' => check_plain(variable_get('iframe_resizer_hosted_width_calculation_method', ''))), array('type' => 'setting'));
+    drupal_add_js(array('iframe_resizer_hosted_height_calculation_method' => check_plain(variable_get('iframe_resizer_hosted_height_calculation_method', ''))), array('type' => 'setting'));
 
     drupal_add_js(drupal_get_path('module', 'iframe_resizer') . '/js/iframe_resizer_hosted_options.js', array(
       'scope' => 'footer',
