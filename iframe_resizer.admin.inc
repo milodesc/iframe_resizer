@@ -293,6 +293,17 @@ function iframe_resizer_admin_form($form, &$form_state) {
     '#default_value' => variable_get('iframe_resizer_targetorigin', ''),
   );
 
+
+  $width_calc_options['scroll'] = 'scroll';
+  $width_calc_options = array('' => t("Use parent's width calculation method")) + $width_calc_options;
+  $form['iframe_resizer_advanced_hosted_options']['iframe_resizer_hosted_width_calculation_method'] = array(
+    '#type' => 'select',
+    '#title' => t('iFrame Width Calculation Method'),
+    '#description' => t('Different circumstances require different methods of calculating the width of the iFramed content.'),
+    '#default_value' => variable_get('iframe_resizer_hosted_width_calculation_method', ''),
+    '#options' => $width_calc_options,
+  );
+
   $form['#validate'][] = 'iframe_resizer_admin_form_validate';
 
   return system_settings_form($form);
