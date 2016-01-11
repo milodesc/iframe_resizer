@@ -48,7 +48,7 @@ function iframe_resizer_admin_form($form, &$form_state) {
         'input[name="iframe_resizer_host"]' => array('checked' => TRUE),
       ),
     ),
-    '#description' => 'Advanced options to be applied when this site will be hosting resizeable iFrames.',
+    '#description' => t('Advanced options to be applied when this site will be hosting resizeable iFrames.'),
   );
 
   $form['iframe_resizer_advanced']['iframe_resizer_target_type'] = array(
@@ -108,7 +108,7 @@ function iframe_resizer_admin_form($form, &$form_state) {
     'lowestElement',
     'taggedElement',
   ));
-  $height_calc_options = array('bodyOffset' => 'Use library default (bodyOffset)') + $height_calc_options;
+  $height_calc_options = array('bodyOffset' => t('Use library default (bodyOffset)')) + $height_calc_options;
   $form['iframe_resizer_advanced']['iframe_resizer_options']['iframe_resizer_height_calculation_method'] = array(
     '#type' => 'select',
     '#title' => t('iFrame Height Calculation Method'),
@@ -283,7 +283,7 @@ function iframe_resizer_admin_form($form, &$form_state) {
         'input[name="iframe_resizer_hosted"]' => array('checked' => TRUE),
       ),
     ),
-    '#description' => 'Advanced options to be applied when this site will be hosted within a resizeable iFrame.',
+    '#description' => t('Advanced options to be applied when this site will be hosted within a resizeable iFrame.'),
   );
 
   $form['iframe_resizer_advanced_hosted_options']['iframe_resizer_targetorigin'] = array(
