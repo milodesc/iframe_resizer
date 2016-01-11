@@ -42,7 +42,6 @@ function iframe_resizer_admin_form($form, &$form_state) {
     '#type' => 'fieldset',
     '#title' => t('Advanced Options for Hosting Resizable iFrames'),
     '#collapsible' => TRUE,
-    '#collapsed' => TRUE,
     '#states' => array(
       'visible' => array(
         'input[name="iframe_resizer_host"]' => array('checked' => TRUE),
@@ -277,7 +276,6 @@ function iframe_resizer_admin_form($form, &$form_state) {
     '#type' => 'fieldset',
     '#title' => t('Advanced Options for Hosted Resizable iFrames'),
     '#collapsible' => TRUE,
-    '#collapsed' => TRUE,
     '#states' => array(
       'visible' => array(
         'input[name="iframe_resizer_hosted"]' => array('checked' => TRUE),
