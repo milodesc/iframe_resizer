@@ -21,7 +21,7 @@
   }
 
   if (!$.isEmptyObject(hosted_options)) {
-    window.iFrameResizer = hosted_options
+    window.iFrameResizer = hosted_options;
   }
 
 }(jQuery));
