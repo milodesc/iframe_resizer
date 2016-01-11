@@ -66,4 +66,5 @@ function iframe_resizer_uninstall() {
   variable_del('iframe_resizer_tolerance');
   variable_del('iframe_resizer_targetorigin');
   variable_del('iframe_resizer_hosted_width_calculation_method');
+  variable_del('iframe_resizer_hosted_height_calculation_method');
 }

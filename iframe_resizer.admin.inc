@@ -293,6 +293,15 @@ function iframe_resizer_admin_form($form, &$form_state) {
     '#default_value' => variable_get('iframe_resizer_targetorigin', ''),
   );
 
+  $height_calc_options['bodyOffset'] = 'bodyOffset';
+  $height_calc_options = array('' => t("Use parent's height calculation method")) + $height_calc_options;
+  $form['iframe_resizer_advanced_hosted_options']['iframe_resizer_hosted_height_calculation_method'] = array(
+    '#type' => 'select',
+    '#title' => t('iFrame Height Calculation Method'),
+    '#description' => t('Different circumstances require different methods of calculating the height of the iFramed content.'),
+    '#default_value' => variable_get('iframe_resizer_hosted_height_calculation_method', ''),
+    '#options' => $height_calc_options,
+  );
 
   $width_calc_options['scroll'] = 'scroll';
   $width_calc_options = array('' => t("Use parent's width calculation method")) + $width_calc_options;
