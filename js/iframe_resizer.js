@@ -1,6 +1,6 @@
 /**
  * @file
- * Resizes the page's iframe according to the module's configuration.
+ * Resizes the page's iframes according to the module's configuration.
  */
 
 (function ($) {
@@ -11,6 +11,8 @@
     attach: function (context, settings) {
       var options = {};
       if (settings.iframe_resizer_override_defaults) {
+
+        // Do some pre-processing on configuration values
         if (settings.iframe_resizer_options.bodyBackground === '') {
           settings.iframe_resizer_options.bodyBackground = null;
         }
@@ -41,6 +43,8 @@
         if (settings.iframe_resizer_options.tolerance === '') {
           settings.iframe_resizer_options.tolerance = 0;
         }
+
+        // Create the options object for the iFrame Resizer library
         options = {
           log: parseInt(settings.iframe_resizer_options.log) === 1,
           heightCalculationMethod: settings.iframe_resizer_options.heightCalculationMethod,
@@ -61,6 +65,8 @@
           tolerance: parseInt(settings.iframe_resizer_options.tolerance)
         };
       }
+
+      // Resize the specified iFrames
       $(settings.iframe_resizer_target_specifiers, context).iFrameResize(options);
     }
   };

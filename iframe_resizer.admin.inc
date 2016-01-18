@@ -10,6 +10,7 @@
  */
 function iframe_resizer_admin_form($form, &$form_state) {
 
+  // Before anything, let's make sure the iFrame Resizer library is installed correctly.
   $library_path = iframe_resizer_get_library_path();
   if (!$library_path) {
     drupal_set_message(t('You need to download the !library and extract the entire contents of the archive into the %path directory on your server.', array(
@@ -38,6 +39,7 @@ function iframe_resizer_admin_form($form, &$form_state) {
     '#description' => t('Enable this option if sites using the iFrame Resizer library will be hosting pages from your site in an iFrame.'),
   );
 
+  // Set up advanced configuration options for sites hosting resizable iFrames.
   $form['iframe_resizer_advanced'] = array(
     '#type' => 'fieldset',
     '#title' => t('Advanced Options for Hosting Resizable iFrames'),
@@ -49,7 +51,6 @@ function iframe_resizer_admin_form($form, &$form_state) {
     ),
     '#description' => t('Advanced options to be applied when this site will be hosting resizeable iFrames.'),
   );
-
   $form['iframe_resizer_advanced']['iframe_resizer_target_type'] = array(
     '#type' => 'radios',
     '#title' => t('Which iFrames should be targeted by the iFrame Resizer library?'),
@@ -272,6 +273,7 @@ function iframe_resizer_admin_form($form, &$form_state) {
     ),
   );
 
+  // Set up advanced configuration options for sites hosted resizable iFrames.
   $form['iframe_resizer_advanced_hosted_options'] = array(
     '#type' => 'fieldset',
     '#title' => t('Advanced Options for Hosted Resizable iFrames'),
@@ -353,7 +355,7 @@ function iframe_resizer_element_validate_positive_integer_zero_infinity($element
 }
 
 /**
- * Validation handler for elements that must be positive integer or zero.
+ * Validation handler for elements that must be a positive integer or zero.
  */
 function iframe_resizer_element_validate_positive_integer_zero($element, &$form_state) {
   $value = $element['#value'];
