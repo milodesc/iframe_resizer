@@ -10,7 +10,7 @@
   Drupal.behaviors.iframe_resizer = {
     attach: function (context, settings) {
       var options = {};
-      if (settings.iframe_resizer_override_defaults) {
+      if (settings.iframe_resizer_override_defaults === "1") {
 
         // Do some pre-processing on configuration values
         if (settings.iframe_resizer_options.bodyBackground === '') {
