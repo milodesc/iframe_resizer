@@ -12,7 +12,7 @@
       var options = {};
       if (settings.iframe_resizer_override_defaults === "1") {
 
-        // Do some pre-processing on configuration values
+        // Do some pre-processing on configuration values.
         if (settings.iframe_resizer_options.bodyBackground === '') {
           settings.iframe_resizer_options.bodyBackground = null;
         }
@@ -44,7 +44,7 @@
           settings.iframe_resizer_options.tolerance = 0;
         }
 
-        // Create the options object for the iFrame Resizer library
+        // Create the options object for the iFrame Resizer library.
         options = {
           log: parseInt(settings.iframe_resizer_options.log) === 1,
           heightCalculationMethod: settings.iframe_resizer_options.heightCalculationMethod,
@@ -66,7 +66,7 @@
         };
       }
 
-      // Resize the specified iFrames
+      // Resize the specified iFrames.
       $(settings.iframe_resizer_target_specifiers, context).iFrameResize(options);
     }
   };

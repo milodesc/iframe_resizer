@@ -63,7 +63,7 @@ function iframe_resizer_page_build(&$page) {
   // If the site is hosting resizable iFrames, include the necessary JS.
   if (variable_get('iframe_resizer_host', FALSE)) {
 
-    // Include the library's main JS file for pages hosting resizable iFrames
+    // Include the library's main JS file for pages hosting resizable iFrames.
     drupal_add_js(iframe_resizer_get_library_path() . '/js/iframeResizer.js', array(
       'scope' => 'footer',
       'group' => JS_LIBRARY,
@@ -71,7 +71,7 @@ function iframe_resizer_page_build(&$page) {
       'requires_jquery' => FALSE,
     ));
 
-    // Make the configuration options available to JS
+    // Make the configuration options available to JS.
     $iframe_resizer_options = array(
       'log' => check_plain(variable_get('iframe_resizer_log', FALSE)),
       'heightCalculationMethod' => check_plain(variable_get('iframe_resizer_height_calculation_method', 'bodyOffset')),
@@ -120,7 +120,8 @@ function iframe_resizer_page_build(&$page) {
   // iFrame Resizable library, include the necessary JS.
   if (variable_get('iframe_resizer_hosted', FALSE)) {
 
-    // Include the library's main JS file for pages hosted within resizable iFrames
+    // Include the library's main JS file for pages hosted within resizable
+    // iFrames.
     drupal_add_js(iframe_resizer_get_library_path() . '/js/iframeResizer.contentWindow.js', array(
       'scope' => 'footer',
       'group' => JS_LIBRARY,
@@ -129,7 +130,7 @@ function iframe_resizer_page_build(&$page) {
       'requires_jquery' => FALSE,
     ));
 
-    // Make the configuration options available to JS
+    // Make the configuration options available to JS.
     drupal_add_js(array('iframe_resizer_targetorigin' => check_plain(variable_get('iframe_resizer_targetorigin', ''))), array('type' => 'setting'));
     drupal_add_js(array('iframe_resizer_hosted_width_calculation_method' => check_plain(variable_get('iframe_resizer_hosted_width_calculation_method', ''))), array('type' => 'setting'));
     drupal_add_js(array('iframe_resizer_hosted_height_calculation_method' => check_plain(variable_get('iframe_resizer_hosted_height_calculation_method', ''))), array('type' => 'setting'));
