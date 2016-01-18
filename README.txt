@@ -23,6 +23,15 @@ This module requires the iFrame Resizer javascript library to be installed in
 Drupal's 'sites/all/libraries' directory (or the appropriate multisite or
 profiles directory).
 
+If your site is iFraming in another site, the child site (i.e. the site listed
+in your iFrame tag's 'src' attribute) must include the
+js/iframeResizer.contentWindow.js or js/iframeResizer.contentWindow.min.js file
+from the iFrame Resizer library.
+
+If your site is being iFramed into another site (i.e. your site is in the
+'src' attribute of the iFrame HTML tag), the parent site must include
+the js/iframeResizer.js or js/iframeResizer.min.js file from the iFrame
+Resizer library.
 
 
 INSTALLATION
@@ -39,6 +48,21 @@ INSTALLATION
  * Install as you would normally install a contributed Drupal module. See:
    https://drupal.org/documentation/install/modules-themes/modules-7
    for further information.
+
+ * If your site will be hosting resizable iFrames, the page your site will be
+   iFraming in must include the content window file from the iFrame Resizer
+   library (i.e. The iFramed page must contain the js/iframeResizer.contentWindow.js
+   or js/iframeResizer.contentWindow.min.js file.), and the 'This site will host
+   resizable iFrames.' checkbox must be checked on your site's configuration page
+   (admin/config/user-interface/iframe_resizer).
+
+ * If your site will be hosted within a resizable iFrame, the page hosting your site
+   must include the main file from the iFrame Resizer library (i.e. The page iFraming
+   in your site must contain the js/iframeResizer.js or js/iframeResizer.min.js file.),
+   and the 'Pages from this site will be hosted within iFrames that have been made
+   resizable by the iFrame Resizer JavaScript library.' checkbox must be checked on
+   your site's configuration page (admin/config/user-interface/iframe_resizer).
+
 
 
 CONFIGURATION
@@ -63,7 +87,14 @@ CONFIGURATION
    - The Advanced Options for Hosting Resizable iFrames fieldset
 
      This fieldset will appear if the 'This site will host resizable
-     iFrames.' checkbox is checked. It will allow you to override some of
+     iFrames.' checkbox is checked. It will allow you to override the
+     library's default behavior.
+
+   - The Advanced Options for Hosted Resizable iFrames fieldset
+
+     This fieldset will appear if the 'Pages from this site will be hosted
+     within iFrames that have been made resizable by the iFrame Resizer
+     JavaScript library.' checkbox is checked. It will allow you to override
      the library's default behavior.
 
 
