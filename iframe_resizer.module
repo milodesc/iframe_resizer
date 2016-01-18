@@ -120,7 +120,7 @@ function iframe_resizer_page_build(&$page) {
   // iFrame Resizable library, include the necessary JS.
   if (variable_get('iframe_resizer_hosted', FALSE)) {
 
-    // Include the library's main JS file for pages hosted withing resizable iFrames
+    // Include the library's main JS file for pages hosted within resizable iFrames
     drupal_add_js(iframe_resizer_get_library_path() . '/js/iframeResizer.contentWindow.js', array(
       'scope' => 'footer',
       'group' => JS_LIBRARY,
