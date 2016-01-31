@@ -290,7 +290,7 @@ function iframe_resizer_admin_form($form, &$form_state) {
   $form['iframe_resizer_advanced_hosted_options']['iframe_resizer_targetorigin'] = array(
     '#type' => 'textfield',
     '#title' => t('targetOrigin'),
-    '#description' => t("Restrict the domain of the parent page to prevent other sites mimicing your parent page. Include protocol ('http://' or 'https://')."),
+    '#description' => t("Restrict the domain of the parent page to prevent other sites mimicking your parent page. Include protocol ('http://' or 'https://')."),
     '#default_value' => variable_get('iframe_resizer_targetorigin', ''),
   );
 
