@@ -96,10 +96,10 @@ function iframe_resizer_page_build(&$page) {
       $iframe_resizer_target_specifiers = check_plain(implode(', ', explode("\n", str_replace("\r", "", variable_get('iframe_resizer_target_specifiers', 'iframe')))));
     }
     drupal_add_js(array(
-        'iframe_resizer_options' => $iframe_resizer_options,
-        'iframe_resizer_target_specifiers' => $iframe_resizer_target_specifiers,
-        'iframe_resizer_override_defaults' => check_plain(variable_get('iframe_resizer_override_defaults', FALSE)),
-      ),
+      'iframe_resizer_options' => $iframe_resizer_options,
+      'iframe_resizer_target_specifiers' => $iframe_resizer_target_specifiers,
+      'iframe_resizer_override_defaults' => check_plain(variable_get('iframe_resizer_override_defaults', FALSE)),
+    ),
       array(
         'type' => 'setting',
         'scope' => 'footer',

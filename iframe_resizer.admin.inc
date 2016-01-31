@@ -17,7 +17,7 @@ function iframe_resizer_admin_form($form, &$form_state) {
     drupal_set_message(t('You need to download the !library and extract the entire contents of the archive into the %path directory on your server.', array(
       '!library' => l(t('iFrame Resizer JavaScript file'), IFRAME_RESIZER_LIBRARY_URL),
       '%path' => 'sites/all/libraries',
-      )
+    )
     ), 'error');
     return;
   }
