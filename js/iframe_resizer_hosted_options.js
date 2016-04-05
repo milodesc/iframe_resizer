@@ -5,7 +5,7 @@
 
 (function ($) {
 
-  "use strict";
+  'use strict';
 
   var hosted_options = {};
   if (Drupal.settings.iframe_resizer_targetorigin) {
