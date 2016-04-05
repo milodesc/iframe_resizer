@@ -335,7 +335,7 @@ function iframe_resizer_admin_form_validate($form, &$form_state) {
     }
     foreach ($fields_reqd_override as $field_name => $field_title) {
       if (trim($form_state['values'][$field_name]) === '') {
-        form_set_error($field_name, t('!name field is required.', array('!name' => $field_title)));
+        form_set_error($field_name, t('@name field is required.', array('@name' => $field_title)));
       }
     }
   }
