@@ -14,11 +14,10 @@ function iframe_resizer_admin_form($form, &$form_state) {
   // correctly.
   $library_path = iframe_resizer_get_library_path();
   if (!$library_path) {
-    drupal_set_message(t('You need to download the !library and extract the entire contents of the archive into the %path directory on your server.', array(
-      '!library' => l(t('iFrame Resizer JavaScript file'), IFRAME_RESIZER_LIBRARY_URL),
+    drupal_set_message(t('You need to download the <a href="@library-download-url">iFrame Resizer JavaScript file</a> and extract the entire contents of the archive into the %path directory on your server.', array(
+      '@library-download-url' => IFRAME_RESIZER_LIBRARY_URL,
       '%path' => 'sites/all/libraries',
-    )
-    ), 'error');
+    )), 'error');
     return;
   }
 
