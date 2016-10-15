@@ -61,7 +61,7 @@ function iframe_resizer_admin_form($form, &$form_state) {
     '#type' => 'textarea',
     '#title' => t('Specify the iFrames which should be targeted by the iFrame Resizer library by supplying jQuery selectors.'),
     '#default_value' => variable_get('iframe_resizer_target_specifiers', ''),
-    '#description' => t('Use one or more jQuery selectors (one per line) to specify which hosted iFrames should be targeted by the iFrame Resizer library.'),
+    '#description' => t('Use one or more jQuery selectors (for example, ".iframe-id" or "div.content > .iframe-class" without the quotation marks) to specify which hosted iFrames should be targeted by the iFrame Resizer library. Enter one selector per line.'),
     '#states' => array(
       'disabled' => array(
         'input[name="iframe_resizer_target_type"]' => array('value' => 'all_iframes'),
