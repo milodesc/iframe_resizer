@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains iframe_resizer.module..
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function iframe_resizer_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the iframe_resizer module.
+    case 'help.page.iframe_resizer':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Provides access to the iFrame Resizer javascript library') . '</p>';
+      return $output;
+
+    default:
+  }
+}
