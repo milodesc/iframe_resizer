@@ -1,4 +1,0 @@
-name = iFrame Resizer
-description = Provides access to the iFrame Resizer javascript library
-core = 7.x
-configure = admin/config/user-interface/iframe_resizer
