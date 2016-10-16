@@ -45,7 +45,7 @@ function iframe_resizer_uninstall() {
   // Delete created variables.
   variable_del('iframe_resizer_host');
   variable_del('iframe_resizer_hosted');
-  variable_del('iframe_resizer_override_defaults:');
+  variable_del('iframe_resizer_override_defaults');
   variable_del('iframe_resizer_log');
   variable_del('iframe_resizer_height_calculation_method');
   variable_del('iframe_resizer_width_calculation_method');
