@@ -34,13 +34,13 @@ class IframeResizerSettingsForm extends ConfigFormBase {
       '#type' => 'checkbox',
       '#title' => $this->t('This site will host resizable iFrames.'),
       '#description' => $this->t("Enable this option if the iFrames being included in this site should be resizable (Note that the site being iFramed in will need to include the iFrame Resizer library's iframeResizer.contentWindow.js file)."),
-      '#default_value' => $config->get('host'),
+      '#default_value' => $config->get('iframe_resizer_usage.host'),
     ];
     $form['iframe_resizer_usage']['hosted'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Pages from this site will be hosted within iFrames that have been made resizable by the iFrame Resizer JavaScript library.'),
       '#description' => $this->t('Enable this option if sites using the iFrame Resizer library will be hosting pages from your site in an iFrame.'),
-      '#default_value' => $config->get('hosted'),
+      '#default_value' => $config->get('iframe_resizer_usage.hosted'),
     ];
 
     $form['submit'] = [
@@ -66,8 +66,8 @@ class IframeResizerSettingsForm extends ConfigFormBase {
     $config = $this->configFactory->getEditable('iframe_resizer.settings');
 
     $config
-      ->set('host', $form_state->getValue('host'))
-      ->set('hosted', $form_state->getValue('hosted'));
+      ->set('iframe_resizer_usage.host', $form_state->getValue('host'))
+      ->set('iframe_resizer_usage.hosted', $form_state->getValue('hosted'));
 
     $config->save();
 

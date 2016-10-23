@@ -33,14 +33,13 @@ function iframe_resizer_page_attachments(array &$page) {
 
   // If this site will be hosting resizeable iframes, include the standard
   // iframe_resizer library file along with the JS to initilize the iframes.
-  if ($config->get('host')) {
-//    $page['#attached']['library'][] = 'iframe_resizer/iframe_resizer';
+  if ($config->get('iframe_resizer_usage.host')) {
     $page['#attached']['library'][] = 'iframe_resizer/init';
   }
 
   // If this site will be hosted within a resizeable iframe, include the
   // iframe resizer library's content window library file.
-  if ($config->get('hosted')) {
+  if ($config->get('iframe_resizer_usage.hosted')) {
     $page['#attached']['library'][] = 'iframe_resizer/iframe_resizer_content_window';
   }
 }
