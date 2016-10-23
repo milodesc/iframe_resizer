@@ -22,3 +22,25 @@ function iframe_resizer_help($route_name, RouteMatchInterface $route_match) {
     default:
   }
 }
+
+/**
+ * Implements hook_page_attachments().
+ *
+ * Adds the iframe-resizer javascript library(s) to the page.
+ */
+function iframe_resizer_page_attachments(array &$page) {
+  $config = \Drupal::config('iframe_resizer.settings');
+
+  // If this site will be hosting resizeable iframes, include the standard
+  // iframe_resizer library file along with the JS to initilize the iframes.
+  if ($config->get('host')) {
+//    $page['#attached']['library'][] = 'iframe_resizer/iframe_resizer';
+    $page['#attached']['library'][] = 'iframe_resizer/init';
+  }
+
+  // If this site will be hosted within a resizeable iframe, include the
+  // iframe resizer library's content window library file.
+  if ($config->get('hosted')) {
+    $page['#attached']['library'][] = 'iframe_resizer/iframe_resizer_content_window';
+  }
+}
