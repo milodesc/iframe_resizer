@@ -45,7 +45,7 @@ class IframeResizerSettingsForm extends ConfigFormBase {
 
     $form['submit'] = [
       '#type' => 'submit',
-      '#value' => t('Submit'),
+      '#value' => $this->t('Submit'),
     ];
 
     return $form;
