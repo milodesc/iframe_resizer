@@ -7,7 +7,11 @@
 
   Drupal.behaviors.initIframeResizer = {
     attach: function (context, settings) {
-      $('iframe', context).iFrameResize(options);
+      var selector = 'iframe';
+      if (typeof settings.iframeResizer.advanced.targetSelectors !== 'undefined') {
+        selector = settings.iframeResizer.advanced.targetSelectors;
+      }
+      $(selector, context).iFrameResize(options);
     }
   };
 

@@ -43,6 +43,45 @@ class IframeResizerSettingsForm extends ConfigFormBase {
       '#default_value' => $config->get('iframe_resizer_usage.hosted'),
     ];
 
+    // Set up advanced configuration options for sites hosting resizable iFrames.
+    $form['iframe_resizer_advanced'] = array(
+      '#type' => 'fieldset',
+      '#title' => $this->t('Advanced Options for Hosting Resizable iFrames'),
+      '#collapsible' => TRUE,
+      '#states' => array(
+        'visible' => array(
+          'input[name="host"]' => array('checked' => TRUE),
+        ),
+      ),
+      '#description' => $this->t('Advanced options to be applied when this site will be hosting resizeable iFrames.'),
+    );
+    $form['iframe_resizer_advanced']['target_type'] = array(
+      '#type' => 'radios',
+      '#title' => $this->t('Which iFrames should be targeted by the iFrame Resizer library?'),
+      '#default_value' => $config->get('iframe_resizer_advanced.target_type'),
+      '#options' => array(
+        'all_iframes' => $this->t('All iFrames'),
+        'specific' => $this->t('Specific iFrames')
+      ),
+    );
+    $form['iframe_resizer_advanced']['target_selectors'] = array(
+      '#type' => 'textarea',
+      '#title' => $this->t('Specify the iFrames which should be targeted by the iFrame Resizer library by supplying jQuery selectors.'),
+      '#default_value' => $config->get('iframe_resizer_advanced.target_selectors'),
+      '#description' => $this->t('Use one or more jQuery selectors (for example, "#iframe-id" or "div.content > .iframe-class" without the quotation marks) to specify which hosted iFrames should be targeted by the iFrame Resizer library. Enter one selector per line.'),
+      '#states' => array(
+        'disabled' => array(
+          'input[name="target_type"]' => array('value' => 'all_iframes'),
+        ),
+        'enabled' => array(
+          'input[name="target_type"]' => array('value' => 'specific'),
+        ),
+        'required' => array(
+          'input[name="target_type"]' => array('value' => 'specific'),
+        ),
+      ),
+    );
+
     $form['submit'] = [
       '#type' => 'submit',
       '#value' => $this->t('Submit'),
@@ -67,7 +106,9 @@ class IframeResizerSettingsForm extends ConfigFormBase {
 
     $config
       ->set('iframe_resizer_usage.host', $form_state->getValue('host'))
-      ->set('iframe_resizer_usage.hosted', $form_state->getValue('hosted'));
+      ->set('iframe_resizer_usage.hosted', $form_state->getValue('hosted'))
+      ->set('iframe_resizer_advanced.target_type', $form_state->getValue('target_type'))
+      ->set('iframe_resizer_advanced.target_selectors', $form_state->getValue('target_selectors'));
 
     $config->save();
 

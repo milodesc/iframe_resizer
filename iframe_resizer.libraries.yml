@@ -23,4 +23,5 @@ init:
   dependencies:
     - core/jquery
     - core/drupal
+    - core/drupalSettings
     - iframe_resizer/iframe_resizer

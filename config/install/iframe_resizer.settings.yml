@@ -1,3 +1,7 @@
 iframe_resizer_usage:
   host: FALSE
   hosted: FALSE
+
+iframe_resizer_advanced:
+  target_type: 'all_iframes'
+  target_selectors: ''
