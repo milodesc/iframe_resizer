@@ -81,6 +81,11 @@ class IframeResizerSettingsForm extends ConfigFormBase {
         ),
       ),
     );
+    $form['iframe_resizer_advanced']['override_defaults'] = array(
+      '#type' => 'checkbox',
+      '#title' => $this->t('Override the default behavior of the iFrame Resizer library.'),
+      '#default_value' => $config->get('iframe_resizer_advanced.override_defaults'),
+    );
 
     $form['submit'] = [
       '#type' => 'submit',
@@ -108,7 +113,8 @@ class IframeResizerSettingsForm extends ConfigFormBase {
       ->set('iframe_resizer_usage.host', $form_state->getValue('host'))
       ->set('iframe_resizer_usage.hosted', $form_state->getValue('hosted'))
       ->set('iframe_resizer_advanced.target_type', $form_state->getValue('target_type'))
-      ->set('iframe_resizer_advanced.target_selectors', $form_state->getValue('target_selectors'));
+      ->set('iframe_resizer_advanced.target_selectors', $form_state->getValue('target_selectors'))
+      ->set('iframe_resizer_advanced.override_defaults', $form_state->getValue('override_defaults'));
 
     $config->save();
 

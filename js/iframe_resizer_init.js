@@ -4,6 +4,9 @@
 
   // Set up the iFrame Resizer library's options.
   var options = {};
+  if (drupalSettings.iframeResizer.advanced.override_defaults) {
+
+  }
 
   Drupal.behaviors.initIframeResizer = {
     attach: function (context, settings) {

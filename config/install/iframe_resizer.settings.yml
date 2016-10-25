@@ -5,3 +5,4 @@ iframe_resizer_usage:
 iframe_resizer_advanced:
   target_type: 'all_iframes'
   target_selectors: ''
+  override_defaults: 0

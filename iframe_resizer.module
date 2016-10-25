@@ -41,6 +41,8 @@ function iframe_resizer_page_attachments(array &$page) {
       $selectors = implode(',', explode(PHP_EOL, $config->get('iframe_resizer_advanced.target_selectors')));
     }
     $page['#attached']['drupalSettings']['iframeResizer']['advanced']['targetSelectors'] = $selectors;
+
+    $page['#attached']['drupalSettings']['iframeResizer']['advanced']['override_defaults'] = $config->get('iframe_resizer_advanced.override_defaults');
   }
 
   // If this site will be hosted within a resizeable iframe, include the
