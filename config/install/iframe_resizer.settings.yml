@@ -6,3 +6,5 @@ iframe_resizer_advanced:
   target_type: 'all_iframes'
   target_selectors: ''
   override_defaults: 0
+  options:
+    log: 0

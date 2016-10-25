@@ -87,6 +87,25 @@ class IframeResizerSettingsForm extends ConfigFormBase {
       '#default_value' => $config->get('iframe_resizer_advanced.override_defaults'),
     );
 
+
+    $form['iframe_resizer_advanced']['iframe_resizer_options'] = array(
+      '#type' => 'fieldset',
+      '#title' => t('Configure the options made available by the iFrame Resizer library'),
+      '#collapsible' => TRUE,
+      '#collapsed' => FALSE,
+      '#states' => array(
+        'visible' => array(
+          'input[name="override_defaults"]' => array('checked' => TRUE),
+        ),
+      ),
+    );
+    $form['iframe_resizer_advanced']['iframe_resizer_options']['log'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Turn iFrame Resizer JavaScript console logging on.'),
+      '#description' => t('Setting the log option to true will make the scripts in both the host page and the iFrame output everything they do to the JavaScript console so you can see the communication between the two scripts.'),
+      '#default_value' => $config->get('iframe_resizer_advanced.options.log'),
+    );
+
     $form['submit'] = [
       '#type' => 'submit',
       '#value' => $this->t('Submit'),
@@ -114,7 +133,8 @@ class IframeResizerSettingsForm extends ConfigFormBase {
       ->set('iframe_resizer_usage.hosted', $form_state->getValue('hosted'))
       ->set('iframe_resizer_advanced.target_type', $form_state->getValue('target_type'))
       ->set('iframe_resizer_advanced.target_selectors', $form_state->getValue('target_selectors'))
-      ->set('iframe_resizer_advanced.override_defaults', $form_state->getValue('override_defaults'));
+      ->set('iframe_resizer_advanced.override_defaults', $form_state->getValue('override_defaults'))
+      ->set('iframe_resizer_advanced.options.log', $form_state->getValue('log'));
 
     $config->save();
 
