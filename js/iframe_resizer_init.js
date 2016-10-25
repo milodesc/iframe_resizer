@@ -1,12 +1,12 @@
-(function ($, Drupal) {
+(function ($, Drupal, iframeResizerSettings) {
 
   'use strict';
 
   // Set up the iFrame Resizer library's options.
   var options = {};
-  if (drupalSettings.iframeResizer.advanced.override_defaults) {
+  if (iframeResizerSettings.advanced.override_defaults) {
     options = {
-      log: drupalSettings.iframeResizer.advanced.options.log === 1
+      log: iframeResizerSettings.advanced.options.log === 1
     }
   }
 
@@ -20,4 +20,4 @@
     }
   };
 
-})(jQuery, Drupal);
+})(jQuery, Drupal, drupalSettings.iframeResizer);
