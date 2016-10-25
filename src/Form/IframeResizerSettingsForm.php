@@ -43,7 +43,8 @@ class IframeResizerSettingsForm extends ConfigFormBase {
       '#default_value' => $config->get('iframe_resizer_usage.hosted'),
     ];
 
-    // Set up advanced configuration options for sites hosting resizable iFrames.
+    // Set up advanced configuration options for sites hosting resizable
+    // iFrames.
     $form['iframe_resizer_advanced'] = array(
       '#type' => 'fieldset',
       '#title' => $this->t('Advanced Options for Hosting Resizable iFrames'),
@@ -61,7 +62,7 @@ class IframeResizerSettingsForm extends ConfigFormBase {
       '#default_value' => $config->get('iframe_resizer_advanced.target_type'),
       '#options' => array(
         'all_iframes' => $this->t('All iFrames'),
-        'specific' => $this->t('Specific iFrames')
+        'specific' => $this->t('Specific iFrames'),
       ),
     );
     $form['iframe_resizer_advanced']['target_selectors'] = array(
@@ -86,7 +87,6 @@ class IframeResizerSettingsForm extends ConfigFormBase {
       '#title' => $this->t('Override the default behavior of the iFrame Resizer library.'),
       '#default_value' => $config->get('iframe_resizer_advanced.override_defaults'),
     );
-
 
     $form['iframe_resizer_advanced']['iframe_resizer_options'] = array(
       '#type' => 'fieldset',
@@ -150,6 +150,7 @@ class IframeResizerSettingsForm extends ConfigFormBase {
    *   conjunction with the trait's config() method.
    */
   protected function getEditableConfigNames() {
-    return ['iframe_resizer.settings',];
+    return ['iframe_resizer.settings'];
   }
+
 }
