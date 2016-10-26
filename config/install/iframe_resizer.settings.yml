@@ -9,3 +9,4 @@ iframe_resizer_advanced:
   options:
     log: 0
     height_calculation_method: bodyOffset
+    width_calculation_method: scroll

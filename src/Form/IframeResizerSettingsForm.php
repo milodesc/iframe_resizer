@@ -128,6 +128,29 @@ class IframeResizerSettingsForm extends ConfigFormBase {
         ),
       ),
     );
+    $width_calc_options = array(
+      'scroll',
+      'bodyOffset',
+      'bodyScroll',
+      'documentElementOffset',
+      'documentElementScroll',
+      'max',
+      'min',
+      'rightMostElement',
+      'taggedElement',
+    );
+    $form['iframe_resizer_advanced']['iframe_resizer_options']['width_calculation_method'] = array(
+      '#type' => 'select',
+      '#title' => t('iFrame Width Calculation Method'),
+      '#description' => t('Different circumstances require different methods of calculating the width of the iFramed content. The iframe resizer library default is scroll.'),
+      '#default_value' => $config->get('iframe_resizer_advanced.options.width_calculation_method'),
+      '#options' => array_combine($width_calc_options, $width_calc_options),
+      '#states' => array(
+        'required' => array(
+          'input[name="override_defaults"]' => array('checked' => TRUE),
+        ),
+      ),
+    );
 
     $form['submit'] = [
       '#type' => 'submit',
@@ -175,7 +198,8 @@ class IframeResizerSettingsForm extends ConfigFormBase {
       ->set('iframe_resizer_advanced.target_selectors', $form_state->getValue('target_selectors'))
       ->set('iframe_resizer_advanced.override_defaults', $form_state->getValue('override_defaults'))
       ->set('iframe_resizer_advanced.options.log', $form_state->getValue('log'))
-      ->set('iframe_resizer_advanced.options.height_calculation_method', $form_state->getValue('height_calculation_method'));
+      ->set('iframe_resizer_advanced.options.height_calculation_method', $form_state->getValue('height_calculation_method'))
+      ->set('iframe_resizer_advanced.options.width_calculation_method', $form_state->getValue('width_calculation_method'));
 
     $config->save();
 
