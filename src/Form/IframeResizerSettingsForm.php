@@ -164,6 +164,13 @@ class IframeResizerSettingsForm extends ConfigFormBase {
    */
   public function validateForm(array &$form, FormStateInterface $form_state) {
 
+    // If the admin chooses to only target specific iFrames, ensure they've told
+    // us which ones.
+    $target_selectors = trim($form_state->getValue('target_selectors'));
+    if ($form_state->getValue('target_type') == 'specific' && empty($target_selectors)) {
+      $form_state->setErrorByName('target_selectors', $this->t('You must specify at least one jQuery selector.'));
+    }
+
     // Find all of the fields that are required if the user is overriding
     // defaults and display a validation error if they weren't supplied.
     if ($form_state->getValue('override_defaults') !== 0) {
