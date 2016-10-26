@@ -105,6 +105,29 @@ class IframeResizerSettingsForm extends ConfigFormBase {
       '#description' => t('Setting the log option to true will make the scripts in both the host page and the iFrame output everything they do to the JavaScript console so you can see the communication between the two scripts.'),
       '#default_value' => $config->get('iframe_resizer_advanced.options.log'),
     );
+    $height_calc_options = array(
+      'bodyOffset',
+      'bodyScroll',
+      'documentElementOffset',
+      'documentElementScroll',
+      'max',
+      'min',
+      'grow',
+      'lowestElement',
+      'taggedElement',
+    );
+    $form['iframe_resizer_advanced']['iframe_resizer_options']['height_calculation_method'] = array(
+      '#type' => 'select',
+      '#title' => t('iFrame Height Calculation Method'),
+      '#description' => t('Different circumstances require different methods of calculating the height of the iFramed content. The iframe resizer library default is bodyOffset.'),
+      '#default_value' => $config->get('iframe_resizer_advanced.options.height_calculation_method'),
+      '#options' => array_combine($height_calc_options, $height_calc_options),
+      '#states' => array(
+        'required' => array(
+          'input[name="override_defaults"]' => array('checked' => TRUE),
+        ),
+      ),
+    );
 
     $form['submit'] = [
       '#type' => 'submit',
@@ -118,6 +141,23 @@ class IframeResizerSettingsForm extends ConfigFormBase {
    * {@inheritdoc}
    */
   public function validateForm(array &$form, FormStateInterface $form_state) {
+
+    // Find all of the fields that are required if the user is overriding
+    // defaults and display a validation error if they weren't supplied.
+    if ($form_state->getValue('override_defaults') !== 0) {
+      $fields_reqd_override = array();
+      foreach ($form['iframe_resizer_advanced']['iframe_resizer_options'] as $field_name => $field_value) {
+        if (is_array($field_value) && isset($field_value['#states']['required']['input[name="override_defaults"]']['checked']) && $field_value['#states']['required']['input[name="override_defaults"]']['checked'] === TRUE) {
+          $fields_reqd_override[$field_name] = $field_value['#title'];
+        }
+      }
+      foreach ($fields_reqd_override as $field_name => $field_title) {
+        if (trim($form_state->getValue($field_name)) === '') {
+          $form_state->setErrorByName($field_name, $this->t('%name field is required.', array('%name' => $field_title)));
+        }
+      }
+    }
+
     parent::validateForm($form, $form_state);
   }
 
@@ -134,7 +174,8 @@ class IframeResizerSettingsForm extends ConfigFormBase {
       ->set('iframe_resizer_advanced.target_type', $form_state->getValue('target_type'))
       ->set('iframe_resizer_advanced.target_selectors', $form_state->getValue('target_selectors'))
       ->set('iframe_resizer_advanced.override_defaults', $form_state->getValue('override_defaults'))
-      ->set('iframe_resizer_advanced.options.log', $form_state->getValue('log'));
+      ->set('iframe_resizer_advanced.options.log', $form_state->getValue('log'))
+      ->set('iframe_resizer_advanced.options.height_calculation_method', $form_state->getValue('height_calculation_method'));
 
     $config->save();
 

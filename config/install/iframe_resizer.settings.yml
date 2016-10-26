@@ -8,3 +8,4 @@ iframe_resizer_advanced:
   override_defaults: 0
   options:
     log: 0
+    height_calculation_method: bodyOffset

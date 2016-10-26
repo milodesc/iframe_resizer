@@ -6,7 +6,8 @@
   var options = {};
   if (iframeResizerSettings.advanced.override_defaults) {
     options = {
-      log: iframeResizerSettings.advanced.options.log === 1
+      log: iframeResizerSettings.advanced.options.log === 1,
+      heightCalculationMethod: iframeResizerSettings.advanced.options.height_calculation_method
     }
   }
 

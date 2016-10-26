@@ -44,6 +44,7 @@ function iframe_resizer_page_attachments(array &$page) {
 
     $page['#attached']['drupalSettings']['iframeResizer']['advanced']['override_defaults'] = $config->get('iframe_resizer_advanced.override_defaults');
     $page['#attached']['drupalSettings']['iframeResizer']['advanced']['options']['log'] = $config->get('iframe_resizer_advanced.options.log');
+    $page['#attached']['drupalSettings']['iframeResizer']['advanced']['options']['height_calculation_method'] = $config->get('iframe_resizer_advanced.options.height_calculation_method');
   }
 
   // If this site will be hosted within a resizeable iframe, include the
