@@ -10,3 +10,5 @@ iframe_resizer_advanced:
     log: 0
     height_calculation_method: bodyOffset
     width_calculation_method: scroll
+    autoresize: 1
+    body_background: ''

@@ -151,6 +151,20 @@ class IframeResizerSettingsForm extends ConfigFormBase {
       ),
     );
 
+    $form['iframe_resizer_advanced']['iframe_resizer_options']['autoresize'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Automatically resize the iFrame when its DOM changes.'),
+      '#description' => t('Checked by default'),
+      '#default_value' => $config->get('iframe_resizer_advanced.options.autoresize', TRUE),
+    );
+
+    $form['iframe_resizer_advanced']['iframe_resizer_options']['body_background'] = array(
+      '#type' => 'textfield',
+      '#title' => t('iFrame body background CSS'),
+      '#description' => t("Override the body background style of the iFrame. Leave blank to use the iFrame's default background."),
+      '#default_value' => $config->get('iframe_resizer_advanced.options.body_background', ''),
+    );
+
     $form['submit'] = [
       '#type' => 'submit',
       '#value' => $this->t('Submit'),
@@ -205,7 +219,9 @@ class IframeResizerSettingsForm extends ConfigFormBase {
       ->set('iframe_resizer_advanced.override_defaults', $form_state->getValue('override_defaults'))
       ->set('iframe_resizer_advanced.options.log', $form_state->getValue('log'))
       ->set('iframe_resizer_advanced.options.height_calculation_method', $form_state->getValue('height_calculation_method'))
-      ->set('iframe_resizer_advanced.options.width_calculation_method', $form_state->getValue('width_calculation_method'));
+      ->set('iframe_resizer_advanced.options.width_calculation_method', $form_state->getValue('width_calculation_method'))
+      ->set('iframe_resizer_advanced.options.autoresize', $form_state->getValue('autoresize'))
+      ->set('iframe_resizer_advanced.options.body_background', $form_state->getValue('body_background'));
 
     $config->save();
 
