@@ -54,7 +54,6 @@ class IframeResizerSettingsForm extends ConfigFormBase {
           'input[name="host"]' => array('checked' => TRUE),
         ),
       ),
-      '#description' => $this->t('Advanced options to be applied when this site will be hosting resizeable iFrames.'),
     );
     $form['iframe_resizer_advanced']['target_type'] = array(
       '#type' => 'radios',
