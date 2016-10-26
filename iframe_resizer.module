@@ -40,14 +40,16 @@ function iframe_resizer_page_attachments(array &$page) {
     if ($config->get('iframe_resizer_advanced.target_type') === 'specific') {
       $selectors = implode(',', explode(PHP_EOL, $config->get('iframe_resizer_advanced.target_selectors')));
     }
-    $page['#attached']['drupalSettings']['iframeResizer']['advanced']['targetSelectors'] = $selectors;
+    $advanced_settings['targetSelectors'] = $selectors;
 
-    $page['#attached']['drupalSettings']['iframeResizer']['advanced']['override_defaults'] = $config->get('iframe_resizer_advanced.override_defaults');
-    $page['#attached']['drupalSettings']['iframeResizer']['advanced']['options']['log'] = $config->get('iframe_resizer_advanced.options.log');
-    $page['#attached']['drupalSettings']['iframeResizer']['advanced']['options']['height_calculation_method'] = $config->get('iframe_resizer_advanced.options.height_calculation_method');
-    $page['#attached']['drupalSettings']['iframeResizer']['advanced']['options']['width_calculation_method'] = $config->get('iframe_resizer_advanced.options.width_calculation_method');
-    $page['#attached']['drupalSettings']['iframeResizer']['advanced']['options']['autoresize'] = $config->get('iframe_resizer_advanced.options.autoresize');
-    $page['#attached']['drupalSettings']['iframeResizer']['advanced']['options']['body_background'] = $config->get('iframe_resizer_advanced.options.body_background');
+    $advanced_settings['override_defaults'] = $config->get('iframe_resizer_advanced.override_defaults');
+    $advanced_settings['options']['log'] = $config->get('iframe_resizer_advanced.options.log');
+    $advanced_settings['options']['height_calculation_method'] = $config->get('iframe_resizer_advanced.options.height_calculation_method');
+    $advanced_settings['options']['width_calculation_method'] = $config->get('iframe_resizer_advanced.options.width_calculation_method');
+    $advanced_settings['options']['autoresize'] = $config->get('iframe_resizer_advanced.options.autoresize');
+    $advanced_settings['options']['body_background'] = $config->get('iframe_resizer_advanced.options.body_background');
+
+    $page['#attached']['drupalSettings']['iframeResizer']['advanced'] = $advanced_settings;
   }
 
   // If this site will be hosted within a resizeable iframe, include the
