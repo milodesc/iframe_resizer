@@ -5,12 +5,12 @@ iframe_resizer_usage:
 iframe_resizer_advanced:
   target_type: 'all_iframes'
   target_selectors: ''
-  override_defaults: 0
+  override_defaults: FALSE
   options:
-    log: 0
-    height_calculation_method: bodyOffset
-    width_calculation_method: scroll
-    autoresize: 1
-    body_background: ''
-    body_margin: ''
-    in_page_links: FALSE
+    log: FALSE
+    heightCalculationMethod: bodyOffset
+    widthCalculationMethod: scroll
+    autoResize: TRUE
+    bodyBackground: ''
+    bodyMargin: ''
+    inPageLinks: FALSE

@@ -115,11 +115,11 @@ class IframeResizerSettingsForm extends ConfigFormBase {
       'lowestElement',
       'taggedElement',
     );
-    $form['iframe_resizer_advanced']['iframe_resizer_options']['height_calculation_method'] = array(
+    $form['iframe_resizer_advanced']['iframe_resizer_options']['heightCalculationMethod'] = array(
       '#type' => 'select',
       '#title' => t('iFrame Height Calculation Method'),
       '#description' => t('Different circumstances require different methods of calculating the height of the iFramed content. The iframe resizer library default is bodyOffset.'),
-      '#default_value' => $config->get('iframe_resizer_advanced.options.height_calculation_method'),
+      '#default_value' => $config->get('iframe_resizer_advanced.options.heightCalculationMethod'),
       '#options' => array_combine($height_calc_options, $height_calc_options),
       '#states' => array(
         'required' => array(
@@ -138,11 +138,11 @@ class IframeResizerSettingsForm extends ConfigFormBase {
       'rightMostElement',
       'taggedElement',
     );
-    $form['iframe_resizer_advanced']['iframe_resizer_options']['width_calculation_method'] = array(
+    $form['iframe_resizer_advanced']['iframe_resizer_options']['widthCalculationMethod'] = array(
       '#type' => 'select',
       '#title' => t('iFrame Width Calculation Method'),
       '#description' => t('Different circumstances require different methods of calculating the width of the iFramed content. The iframe resizer library default is scroll.'),
-      '#default_value' => $config->get('iframe_resizer_advanced.options.width_calculation_method'),
+      '#default_value' => $config->get('iframe_resizer_advanced.options.widthCalculationMethod'),
       '#options' => array_combine($width_calc_options, $width_calc_options),
       '#states' => array(
         'required' => array(
@@ -151,31 +151,31 @@ class IframeResizerSettingsForm extends ConfigFormBase {
       ),
     );
 
-    $form['iframe_resizer_advanced']['iframe_resizer_options']['autoresize'] = array(
+    $form['iframe_resizer_advanced']['iframe_resizer_options']['autoResize'] = array(
       '#type' => 'checkbox',
       '#title' => t('Automatically resize the iFrame when its DOM changes.'),
       '#description' => t('Checked by default'),
-      '#default_value' => $config->get('iframe_resizer_advanced.options.autoresize'),
+      '#default_value' => $config->get('iframe_resizer_advanced.options.autoResize'),
     );
 
-    $form['iframe_resizer_advanced']['iframe_resizer_options']['body_background'] = array(
+    $form['iframe_resizer_advanced']['iframe_resizer_options']['bodyBackground'] = array(
       '#type' => 'textfield',
       '#title' => t('iFrame body background CSS'),
       '#description' => t("Override the body background style of the iFrame. Leave blank to use the iFrame's default background."),
-      '#default_value' => $config->get('iframe_resizer_advanced.options.body_background'),
+      '#default_value' => $config->get('iframe_resizer_advanced.options.bodyBackground'),
     );
 
-    $form['iframe_resizer_advanced']['iframe_resizer_options']['body_margin'] = array(
+    $form['iframe_resizer_advanced']['iframe_resizer_options']['bodyMargin'] = array(
       '#type' => 'textfield',
       '#title' => t('iFrame body margin CSS'),
       '#description' => t("Override the iFrame's body's margin styles. Leave blank to use the iFrame's default body margin styles."),
-      '#default_value' => $config->get('iframe_resizer_advanced.options.body_margin'),
+      '#default_value' => $config->get('iframe_resizer_advanced.options.bodyMargin'),
     );
 
-    $form['iframe_resizer_advanced']['iframe_resizer_options']['in_page_links'] = array(
+    $form['iframe_resizer_advanced']['iframe_resizer_options']['inPageLinks'] = array(
       '#type' => 'checkbox',
       '#title' => t('Enable in page linking inside the iFrame and from the iFrame to the parent page'),
-      '#default_value' => $config->get('iframe_resizer_advanced.options.in_page_links'),
+      '#default_value' => $config->get('iframe_resizer_advanced.options.inPageLinks'),
     );
 
     $form['submit'] = [
@@ -224,19 +224,21 @@ class IframeResizerSettingsForm extends ConfigFormBase {
 
     $config = $this->configFactory->getEditable('iframe_resizer.settings');
 
+    // Set and save the configuration data. Check booleans against '=== 1' so
+    // we store booleans instead of ints.
     $config
-      ->set('iframe_resizer_usage.host', $form_state->getValue('host'))
-      ->set('iframe_resizer_usage.hosted', $form_state->getValue('hosted'))
+      ->set('iframe_resizer_usage.host', $form_state->getValue('host') === 1)
+      ->set('iframe_resizer_usage.hosted', $form_state->getValue('hosted') === 1)
       ->set('iframe_resizer_advanced.target_type', $form_state->getValue('target_type'))
       ->set('iframe_resizer_advanced.target_selectors', $form_state->getValue('target_selectors'))
-      ->set('iframe_resizer_advanced.override_defaults', $form_state->getValue('override_defaults'))
-      ->set('iframe_resizer_advanced.options.log', $form_state->getValue('log'))
-      ->set('iframe_resizer_advanced.options.height_calculation_method', $form_state->getValue('height_calculation_method'))
-      ->set('iframe_resizer_advanced.options.width_calculation_method', $form_state->getValue('width_calculation_method'))
-      ->set('iframe_resizer_advanced.options.autoresize', $form_state->getValue('autoresize'))
-      ->set('iframe_resizer_advanced.options.body_background', $form_state->getValue('body_background'))
-      ->set('iframe_resizer_advanced.options.body_margin', $form_state->getValue('body_margin'))
-      ->set('iframe_resizer_advanced.options.in_page_links', $form_state->getValue('in_page_links'));
+      ->set('iframe_resizer_advanced.override_defaults', $form_state->getValue('override_defaults') === 1)
+      ->set('iframe_resizer_advanced.options.log', $form_state->getValue('log') === 1)
+      ->set('iframe_resizer_advanced.options.heightCalculationMethod', $form_state->getValue('heightCalculationMethod'))
+      ->set('iframe_resizer_advanced.options.widthCalculationMethod', $form_state->getValue('widthCalculationMethod'))
+      ->set('iframe_resizer_advanced.options.autoResize', $form_state->getValue('autoResize') === 1)
+      ->set('iframe_resizer_advanced.options.bodyBackground', $form_state->getValue('bodyBackground'))
+      ->set('iframe_resizer_advanced.options.bodyMargin', $form_state->getValue('bodyMargin'))
+      ->set('iframe_resizer_advanced.options.inPageLinks', $form_state->getValue('inPageLinks') === 1);
 
     $config->save();
 
