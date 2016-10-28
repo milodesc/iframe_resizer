@@ -12,3 +12,4 @@ iframe_resizer_advanced:
     width_calculation_method: scroll
     autoresize: 1
     body_background: ''
+    body_margin: ''

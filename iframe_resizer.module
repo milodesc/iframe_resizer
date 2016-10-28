@@ -48,6 +48,7 @@ function iframe_resizer_page_attachments(array &$page) {
     $advanced_settings['options']['width_calculation_method'] = $config->get('iframe_resizer_advanced.options.width_calculation_method');
     $advanced_settings['options']['autoresize'] = $config->get('iframe_resizer_advanced.options.autoresize');
     $advanced_settings['options']['body_background'] = $config->get('iframe_resizer_advanced.options.body_background');
+    $advanced_settings['options']['body_margin'] = $config->get('iframe_resizer_advanced.options.body_margin');
 
     $page['#attached']['drupalSettings']['iframeResizer']['advanced'] = $advanced_settings;
   }

@@ -165,6 +165,13 @@ class IframeResizerSettingsForm extends ConfigFormBase {
       '#default_value' => $config->get('iframe_resizer_advanced.options.body_background', ''),
     );
 
+    $form['iframe_resizer_advanced']['iframe_resizer_options']['body_margin'] = array(
+      '#type' => 'textfield',
+      '#title' => t('iFrame body margin CSS'),
+      '#description' => t("Override the iFrame's body's margin styles. Leave blank to use the iFrame's default body margin styles."),
+      '#default_value' => $config->get('iframe_resizer_advanced.options.body_margin'),
+    );
+
     $form['submit'] = [
       '#type' => 'submit',
       '#value' => $this->t('Submit'),
@@ -221,7 +228,8 @@ class IframeResizerSettingsForm extends ConfigFormBase {
       ->set('iframe_resizer_advanced.options.height_calculation_method', $form_state->getValue('height_calculation_method'))
       ->set('iframe_resizer_advanced.options.width_calculation_method', $form_state->getValue('width_calculation_method'))
       ->set('iframe_resizer_advanced.options.autoresize', $form_state->getValue('autoresize'))
-      ->set('iframe_resizer_advanced.options.body_background', $form_state->getValue('body_background'));
+      ->set('iframe_resizer_advanced.options.body_background', $form_state->getValue('body_background'))
+      ->set('iframe_resizer_advanced.options.body_margin', $form_state->getValue('body_margin'));
 
     $config->save();
 

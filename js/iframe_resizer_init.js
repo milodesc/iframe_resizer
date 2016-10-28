@@ -10,7 +10,8 @@
       heightCalculationMethod: iframeResizerSettings.advanced.options.height_calculation_method,
       widthCalculationMethod: iframeResizerSettings.advanced.options.width_calculation_method,
       autoResize: iframeResizerSettings.advanced.options.autoresize === 1,
-      bodyBackground: iframeResizerSettings.advanced.options.body_background
+      bodyBackground: iframeResizerSettings.advanced.options.body_background,
+      bodyMargin: iframeResizerSettings.advanced.options.body_margin
     }
   }
 
