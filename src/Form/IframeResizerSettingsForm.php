@@ -155,14 +155,14 @@ class IframeResizerSettingsForm extends ConfigFormBase {
       '#type' => 'checkbox',
       '#title' => t('Automatically resize the iFrame when its DOM changes.'),
       '#description' => t('Checked by default'),
-      '#default_value' => $config->get('iframe_resizer_advanced.options.autoresize', TRUE),
+      '#default_value' => $config->get('iframe_resizer_advanced.options.autoresize'),
     );
 
     $form['iframe_resizer_advanced']['iframe_resizer_options']['body_background'] = array(
       '#type' => 'textfield',
       '#title' => t('iFrame body background CSS'),
       '#description' => t("Override the body background style of the iFrame. Leave blank to use the iFrame's default background."),
-      '#default_value' => $config->get('iframe_resizer_advanced.options.body_background', ''),
+      '#default_value' => $config->get('iframe_resizer_advanced.options.body_background'),
     );
 
     $form['iframe_resizer_advanced']['iframe_resizer_options']['body_margin'] = array(
