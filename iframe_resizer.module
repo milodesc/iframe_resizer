@@ -41,14 +41,8 @@ function iframe_resizer_page_attachments(array &$page) {
       $selectors = implode(',', explode(PHP_EOL, $config->get('iframe_resizer_advanced.target_selectors')));
     }
     $advanced_settings['targetSelectors'] = $selectors;
-
     $advanced_settings['override_defaults'] = $config->get('iframe_resizer_advanced.override_defaults');
-    $advanced_settings['options']['log'] = $config->get('iframe_resizer_advanced.options.log');
-    $advanced_settings['options']['height_calculation_method'] = $config->get('iframe_resizer_advanced.options.height_calculation_method');
-    $advanced_settings['options']['width_calculation_method'] = $config->get('iframe_resizer_advanced.options.width_calculation_method');
-    $advanced_settings['options']['autoresize'] = $config->get('iframe_resizer_advanced.options.autoresize');
-    $advanced_settings['options']['body_background'] = $config->get('iframe_resizer_advanced.options.body_background');
-    $advanced_settings['options']['body_margin'] = $config->get('iframe_resizer_advanced.options.body_margin');
+    $advanced_settings['options'] = $config->get('iframe_resizer_advanced.options');
 
     $page['#attached']['drupalSettings']['iframeResizer']['advanced'] = $advanced_settings;
   }
