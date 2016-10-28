@@ -172,6 +172,12 @@ class IframeResizerSettingsForm extends ConfigFormBase {
       '#default_value' => $config->get('iframe_resizer_advanced.options.body_margin'),
     );
 
+    $form['iframe_resizer_advanced']['iframe_resizer_options']['in_page_links'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Enable in page linking inside the iFrame and from the iFrame to the parent page'),
+      '#default_value' => $config->get('iframe_resizer_advanced.options.in_page_links'),
+    );
+
     $form['submit'] = [
       '#type' => 'submit',
       '#value' => $this->t('Submit'),
@@ -229,7 +235,8 @@ class IframeResizerSettingsForm extends ConfigFormBase {
       ->set('iframe_resizer_advanced.options.width_calculation_method', $form_state->getValue('width_calculation_method'))
       ->set('iframe_resizer_advanced.options.autoresize', $form_state->getValue('autoresize'))
       ->set('iframe_resizer_advanced.options.body_background', $form_state->getValue('body_background'))
-      ->set('iframe_resizer_advanced.options.body_margin', $form_state->getValue('body_margin'));
+      ->set('iframe_resizer_advanced.options.body_margin', $form_state->getValue('body_margin'))
+      ->set('iframe_resizer_advanced.options.in_page_links', $form_state->getValue('in_page_links'));
 
     $config->save();
 

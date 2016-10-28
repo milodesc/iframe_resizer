@@ -13,3 +13,4 @@ iframe_resizer_advanced:
     autoresize: 1
     body_background: ''
     body_margin: ''
+    in_page_links: FALSE

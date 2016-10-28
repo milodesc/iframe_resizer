@@ -11,7 +11,8 @@
       widthCalculationMethod: iframeResizerSettings.advanced.options.width_calculation_method,
       autoResize: iframeResizerSettings.advanced.options.autoresize === 1,
       bodyBackground: iframeResizerSettings.advanced.options.body_background,
-      bodyMargin: iframeResizerSettings.advanced.options.body_margin
+      bodyMargin: iframeResizerSettings.advanced.options.body_margin,
+      inPageLinks: iframeResizerSettings.advanced.options.in_page_links ===1
     }
   }
 
