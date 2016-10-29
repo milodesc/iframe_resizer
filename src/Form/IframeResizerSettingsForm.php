@@ -247,6 +247,22 @@ class IframeResizerSettingsForm extends ConfigFormBase {
       '#size' => 8,
     );
 
+    $form['iframe_resizer_advanced']['iframe_resizer_options']['resizeFrom'] = array(
+      '#type' => 'select',
+      '#title' => t('Resize event listener'),
+      '#description' => t('Listen for resize events from the parent page, or the iFrame. \'Parent\' is the library default.'),
+      '#default_value' => $config->get('iframe_resizer_advanced.options.resizeFrom'),
+      '#options' => array(
+        'parent' => t('Parent'),
+        'child' => t('Child'),
+      ),
+      '#states' => array(
+        'required' => array(
+          'input[name="override_defaults"]' => array('checked' => TRUE),
+        ),
+      ),
+    );
+
     $form['submit'] = [
       '#type' => 'submit',
       '#value' => $this->t('Submit'),
@@ -324,7 +340,8 @@ class IframeResizerSettingsForm extends ConfigFormBase {
       ->set('iframe_resizer_advanced.options.maxHeight', (int) $max_height)
       ->set('iframe_resizer_advanced.options.maxWidth', (int) $max_width)
       ->set('iframe_resizer_advanced.options.minHeight', (int) $form_state->getValue('minHeight'))
-      ->set('iframe_resizer_advanced.options.minWidth', (int) $form_state->getValue('minWidth'));
+      ->set('iframe_resizer_advanced.options.minWidth', (int) $form_state->getValue('minWidth'))
+      ->set('iframe_resizer_advanced.options.resizeFrom', $form_state->getValue('resizeFrom'));
 
     $config->save();
 

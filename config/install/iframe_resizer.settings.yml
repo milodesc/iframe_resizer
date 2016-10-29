@@ -19,3 +19,4 @@ iframe_resizer_advanced:
     maxWidth: -1
     minHeight: 0
     minWidth: 0
+    resizeFrom: 'parent'
