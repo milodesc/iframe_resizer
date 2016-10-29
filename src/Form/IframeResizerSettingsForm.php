@@ -284,6 +284,20 @@ class IframeResizerSettingsForm extends ConfigFormBase {
       '#description' => t('Disabled by default.'),
     );
 
+    $form['iframe_resizer_advanced']['iframe_resizer_options']['tolerance'] = array(
+      '#type' => 'number',
+      '#title' => t('Tolerance'),
+      '#min' => 0,
+      '#description' => t('Set the number of pixels the iFrame content size has to change by, before triggering a resize of the iFrame. Default is 0.'),
+      '#default_value' => $config->get('iframe_resizer_advanced.options.tolerance'),
+      '#size' => 8,
+      '#states' => array(
+        'required' => array(
+          'input[name="override_defaults"]' => array('checked' => TRUE),
+        ),
+      ),
+    );
+
     $form['submit'] = [
       '#type' => 'submit',
       '#value' => $this->t('Submit'),
@@ -365,7 +379,8 @@ class IframeResizerSettingsForm extends ConfigFormBase {
       ->set('iframe_resizer_advanced.options.resizeFrom', $form_state->getValue('resizeFrom'))
       ->set('iframe_resizer_advanced.options.scrolling', (bool) $form_state->getValue('scrolling'))
       ->set('iframe_resizer_advanced.options.sizeHeight', (bool) $form_state->getValue('sizeHeight'))
-      ->set('iframe_resizer_advanced.options.sizeWidth', (bool) $form_state->getValue('sizeWidth'));
+      ->set('iframe_resizer_advanced.options.sizeWidth', (bool) $form_state->getValue('sizeWidth'))
+      ->set('iframe_resizer_advanced.options.tolerance', (int) $form_state->getValue('tolerance'));
 
     $config->save();
 
