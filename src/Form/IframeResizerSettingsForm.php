@@ -178,6 +178,19 @@ class IframeResizerSettingsForm extends ConfigFormBase {
       '#default_value' => $config->get('iframe_resizer_advanced.options.inPageLinks'),
     );
 
+    $form['iframe_resizer_advanced']['iframe_resizer_options']['interval'] = array(
+      '#type' => 'number',
+      '#title' => t('Page size change check interval'),
+      '#description' => t("How often to check (in milliseconds) for page size changes in browsers which don't support mutationObserver. Default is 32. Setting this property to a negative number will force the interval check to run instead of mutationObserver. Set to zero to disable."),
+      '#default_value' => $config->get('iframe_resizer_advanced.options.interval'),
+      '#size' => 5,
+      '#states' => array(
+        'required' => array(
+          'input[name="override_defaults"]' => array('checked' => TRUE),
+        ),
+      ),
+    );
+
     $form['submit'] = [
       '#type' => 'submit',
       '#value' => $this->t('Submit'),
@@ -238,7 +251,8 @@ class IframeResizerSettingsForm extends ConfigFormBase {
       ->set('iframe_resizer_advanced.options.autoResize', $form_state->getValue('autoResize') === 1)
       ->set('iframe_resizer_advanced.options.bodyBackground', $form_state->getValue('bodyBackground'))
       ->set('iframe_resizer_advanced.options.bodyMargin', $form_state->getValue('bodyMargin'))
-      ->set('iframe_resizer_advanced.options.inPageLinks', $form_state->getValue('inPageLinks') === 1);
+      ->set('iframe_resizer_advanced.options.inPageLinks',  $form_state->getValue('inPageLinks') === 1)
+      ->set('iframe_resizer_advanced.options.interval', (int) $form_state->getValue('interval'));
 
     $config->save();
 

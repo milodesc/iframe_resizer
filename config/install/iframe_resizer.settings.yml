@@ -14,3 +14,4 @@ iframe_resizer_advanced:
     bodyBackground: ''
     bodyMargin: ''
     inPageLinks: FALSE
+    interval: 32
