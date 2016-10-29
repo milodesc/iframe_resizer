@@ -17,3 +17,4 @@ iframe_resizer_advanced:
     interval: 32
     maxHeight: -1
     maxWidth: -1
+    minHeight: 0

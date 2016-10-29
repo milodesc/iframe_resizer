@@ -221,6 +221,19 @@ class IframeResizerSettingsForm extends ConfigFormBase {
       '#size' => 8,
     );
 
+    $min_height_default = $config->get('iframe_resizer_advanced.options.minHeight');
+    if ($min_height_default == 0) {
+      $min_height_default = '';
+    }
+    $form['iframe_resizer_advanced']['iframe_resizer_options']['minHeight'] = array(
+      '#type' => 'number',
+      '#min' => 0,
+      '#title' => t('Minimum height of the iFrame (in pixels)'),
+      '#description' => t('Leave blank to set no minimum, the default.'),
+      '#default_value' => $min_height_default,
+      '#size' => 8,
+    );
+
     $form['submit'] = [
       '#type' => 'submit',
       '#value' => $this->t('Submit'),
@@ -296,7 +309,8 @@ class IframeResizerSettingsForm extends ConfigFormBase {
       ->set('iframe_resizer_advanced.options.inPageLinks',  $form_state->getValue('inPageLinks') === 1)
       ->set('iframe_resizer_advanced.options.interval', (int) $form_state->getValue('interval'))
       ->set('iframe_resizer_advanced.options.maxHeight', (int) $max_height)
-      ->set('iframe_resizer_advanced.options.maxWidth', (int) $max_width);
+      ->set('iframe_resizer_advanced.options.maxWidth', (int) $max_width)
+      ->set('iframe_resizer_advanced.options.minHeight', (int) $form_state->getValue('minHeight'));
 
     $config->save();
 
