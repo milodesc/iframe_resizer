@@ -5,6 +5,10 @@
   // Set up the iFrame Resizer library's options.
   var options = {};
   if (iframeResizerSettings.advanced.override_defaults) {
+    if (iframeResizerSettings.advanced.options.maxHeight === -1) {
+      iframeResizerSettings.advanced.options.maxHeight = Infinity;
+    }
+
     options = iframeResizerSettings.advanced.options;
   }
 

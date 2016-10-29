@@ -15,3 +15,4 @@ iframe_resizer_advanced:
     bodyMargin: ''
     inPageLinks: FALSE
     interval: 32
+    maxHeight: -1
