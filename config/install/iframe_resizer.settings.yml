@@ -20,3 +20,4 @@ iframe_resizer_advanced:
     minHeight: 0
     minWidth: 0
     resizeFrom: 'parent'
+    scrolling: FALSE

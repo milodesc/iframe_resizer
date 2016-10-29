@@ -263,6 +263,13 @@ class IframeResizerSettingsForm extends ConfigFormBase {
       ),
     );
 
+    $form['iframe_resizer_advanced']['iframe_resizer_options']['scrolling'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Enable scroll bars in iFrame'),
+      '#default_value' => $config->get('iframe_resizer_advanced.options.scrolling'),
+      '#description' => t('Disabled by default.'),
+    );
+
     $form['submit'] = [
       '#type' => 'submit',
       '#value' => $this->t('Submit'),
@@ -341,7 +348,8 @@ class IframeResizerSettingsForm extends ConfigFormBase {
       ->set('iframe_resizer_advanced.options.maxWidth', (int) $max_width)
       ->set('iframe_resizer_advanced.options.minHeight', (int) $form_state->getValue('minHeight'))
       ->set('iframe_resizer_advanced.options.minWidth', (int) $form_state->getValue('minWidth'))
-      ->set('iframe_resizer_advanced.options.resizeFrom', $form_state->getValue('resizeFrom'));
+      ->set('iframe_resizer_advanced.options.resizeFrom', $form_state->getValue('resizeFrom'))
+      ->set('iframe_resizer_advanced.options.scrolling', (bool) $form_state->getValue('scrolling'));
 
     $config->save();
 
