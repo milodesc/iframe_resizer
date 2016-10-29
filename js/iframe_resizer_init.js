@@ -9,6 +9,10 @@
       iframeResizerSettings.advanced.options.maxHeight = Infinity;
     }
 
+    if (iframeResizerSettings.advanced.options.maxWidth === -1) {
+      iframeResizerSettings.advanced.options.maxWidth = Infinity;
+    }
+
     options = iframeResizerSettings.advanced.options;
   }
 

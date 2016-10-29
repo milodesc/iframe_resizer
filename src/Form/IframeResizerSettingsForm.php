@@ -206,6 +206,21 @@ class IframeResizerSettingsForm extends ConfigFormBase {
       '#size' => 8,
     );
 
+    // If the maxWidth value is negative, display an empty text field. That will
+    // be interpreted as Infinity.
+    $max_width_default = '';
+    if ($config->get('iframe_resizer_advanced.options.maxWidth') >= 0) {
+      $max_width_default = $config->get('iframe_resizer_advanced.options.maxWidth');
+    }
+    $form['iframe_resizer_advanced']['iframe_resizer_options']['maxWidth'] = array(
+      '#type' => 'number',
+      '#min' => 0,
+      '#title' => t('Maximum width of the iFrame (in pixels)'),
+      '#description' => t("Leave blank to set no maximum, the default."),
+      '#default_value' => $max_width_default,
+      '#size' => 8,
+    );
+
     $form['submit'] = [
       '#type' => 'submit',
       '#value' => $this->t('Submit'),
@@ -252,11 +267,16 @@ class IframeResizerSettingsForm extends ConfigFormBase {
 
     $config = $this->configFactory->getEditable('iframe_resizer.settings');
 
-    // If the user left the maxHeight field blank, we'll store it in the config
-    // settings as -1 and interpret that as Infinity in the JS.
+    // If the user left the maxHeight or maxWidth field blank, we'll store it in
+    // the config settings as -1 and interpret that as Infinity in the JS.
     $max_height = $form_state->getValue('maxHeight');
     if ($max_height === '') {
       $max_height = -1;
+    }
+
+    $max_width = $form_state->getValue('maxWidth');
+    if ($max_width === '') {
+      $max_width = -1;
     }
 
     // Set and save the configuration data. Check booleans against '=== 1' so
@@ -275,7 +295,8 @@ class IframeResizerSettingsForm extends ConfigFormBase {
       ->set('iframe_resizer_advanced.options.bodyMargin', $form_state->getValue('bodyMargin'))
       ->set('iframe_resizer_advanced.options.inPageLinks',  $form_state->getValue('inPageLinks') === 1)
       ->set('iframe_resizer_advanced.options.interval', (int) $form_state->getValue('interval'))
-      ->set('iframe_resizer_advanced.options.maxHeight', (int) $max_height);
+      ->set('iframe_resizer_advanced.options.maxHeight', (int) $max_height)
+      ->set('iframe_resizer_advanced.options.maxWidth', (int) $max_width);
 
     $config->save();
 
