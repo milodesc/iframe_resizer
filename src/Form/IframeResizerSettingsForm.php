@@ -277,6 +277,13 @@ class IframeResizerSettingsForm extends ConfigFormBase {
       '#description' => t('Enabled by default.'),
     );
 
+    $form['iframe_resizer_advanced']['iframe_resizer_options']['sizeWidth'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Resize iFrame to content width.'),
+      '#default_value' => $config->get('iframe_resizer_advanced.options.sizeWidth'),
+      '#description' => t('Disabled by default.'),
+    );
+
     $form['submit'] = [
       '#type' => 'submit',
       '#value' => $this->t('Submit'),
@@ -357,7 +364,8 @@ class IframeResizerSettingsForm extends ConfigFormBase {
       ->set('iframe_resizer_advanced.options.minWidth', (int) $form_state->getValue('minWidth'))
       ->set('iframe_resizer_advanced.options.resizeFrom', $form_state->getValue('resizeFrom'))
       ->set('iframe_resizer_advanced.options.scrolling', (bool) $form_state->getValue('scrolling'))
-      ->set('iframe_resizer_advanced.options.sizeHeight', (bool) $form_state->getValue('sizeHeight'));
+      ->set('iframe_resizer_advanced.options.sizeHeight', (bool) $form_state->getValue('sizeHeight'))
+      ->set('iframe_resizer_advanced.options.sizeWidth', (bool) $form_state->getValue('sizeWidth'));
 
     $config->save();
 
