@@ -18,3 +18,4 @@ iframe_resizer_advanced:
     maxHeight: -1
     maxWidth: -1
     minHeight: 0
+    minWidth: 0

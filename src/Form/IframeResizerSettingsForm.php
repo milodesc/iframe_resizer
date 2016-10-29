@@ -234,6 +234,19 @@ class IframeResizerSettingsForm extends ConfigFormBase {
       '#size' => 8,
     );
 
+    $min_width_default = $config->get('iframe_resizer_advanced.options.minWidth');
+    if ($min_width_default == 0) {
+      $min_width_default = '';
+    }
+    $form['iframe_resizer_advanced']['iframe_resizer_options']['minWidth'] = array(
+      '#type' => 'number',
+      '#min' => 0,
+      '#title' => t('Minimum width of the iFrame (in pixels)'),
+      '#description' => t('Leave blank to set no minimum, the default.'),
+      '#default_value' => $min_width_default,
+      '#size' => 8,
+    );
+
     $form['submit'] = [
       '#type' => 'submit',
       '#value' => $this->t('Submit'),
@@ -310,7 +323,8 @@ class IframeResizerSettingsForm extends ConfigFormBase {
       ->set('iframe_resizer_advanced.options.interval', (int) $form_state->getValue('interval'))
       ->set('iframe_resizer_advanced.options.maxHeight', (int) $max_height)
       ->set('iframe_resizer_advanced.options.maxWidth', (int) $max_width)
-      ->set('iframe_resizer_advanced.options.minHeight', (int) $form_state->getValue('minHeight'));
+      ->set('iframe_resizer_advanced.options.minHeight', (int) $form_state->getValue('minHeight'))
+      ->set('iframe_resizer_advanced.options.minWidth', (int) $form_state->getValue('minWidth'));
 
     $config->save();
 
