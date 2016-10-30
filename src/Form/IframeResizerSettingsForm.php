@@ -46,9 +46,9 @@ class IframeResizerSettingsForm extends ConfigFormBase {
     // Set up advanced configuration options for sites hosting resizable
     // iFrames.
     $form['iframe_resizer_advanced'] = array(
-      '#type' => 'fieldset',
+      '#type' => 'details',
       '#title' => $this->t('Advanced Options for Hosting Resizable iFrames'),
-      '#collapsible' => TRUE,
+      '#open' => TRUE,
       '#states' => array(
         'visible' => array(
           'input[name="host"]' => array('checked' => TRUE),
@@ -88,10 +88,9 @@ class IframeResizerSettingsForm extends ConfigFormBase {
     );
 
     $form['iframe_resizer_advanced']['iframe_resizer_options'] = array(
-      '#type' => 'fieldset',
+      '#type' => 'details',
       '#title' => $this->t('Configure the options made available by the iFrame Resizer library'),
-      '#collapsible' => TRUE,
-      '#collapsed' => FALSE,
+      '#open' => TRUE,
       '#states' => array(
         'visible' => array(
           'input[name="override_defaults"]' => array('checked' => TRUE),
