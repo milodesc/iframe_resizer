@@ -315,6 +315,29 @@ class IframeResizerSettingsForm extends ConfigFormBase {
       '#description' => t("Restrict the domain of the parent page to prevent other sites mimicking your parent page. Include protocol ('http://' or 'https://'). The default is '*', which does not restrict the domain of the parent page."),
       '#default_value' => $config->get('iframe_resizer_advanced_hosted_options.targetOrigin'),
     );
+    $form['iframe_resizer_advanced_hosted_options']['heightCalculationMethodOverride'] = array(
+      '#type' => 'select',
+      '#title' => $this->t('iFrame Height Calculation Method Override'),
+      '#description' => $this->t('Different circumstances require different methods of calculating the height of the iFramed content. The iframe resizer library default is bodyOffset.'),
+      '#default_value' => $config->get('iframe_resizer_advanced_hosted_options.heightCalculationMethodOverride'),
+      '#options' =>  array(
+        'parent' => t("Use parent's height calculation method"),
+        'bodyOffset' => 'bodyOffset',
+        'bodyScroll' => 'bodyScroll',
+        'documentElementOffset' => 'documentElementOffset',
+        'documentElementScroll' => 'documentElementScroll',
+        'max' => 'max',
+        'min' => 'min',
+        'grow' => 'grow',
+        'lowestElement' => 'lowestElement',
+        'taggedElement' => 'taggedElement',
+      ),
+      '#states' => array(
+        'required' => array(
+          'input[name="override_defaults"]' => array('checked' => TRUE),
+        ),
+      ),
+    );
 
     $form['submit'] = [
       '#type' => 'submit',
@@ -399,7 +422,8 @@ class IframeResizerSettingsForm extends ConfigFormBase {
       ->set('iframe_resizer_advanced.options.sizeHeight', (bool) $form_state->getValue('sizeHeight'))
       ->set('iframe_resizer_advanced.options.sizeWidth', (bool) $form_state->getValue('sizeWidth'))
       ->set('iframe_resizer_advanced.options.tolerance', (int) $form_state->getValue('tolerance'))
-      ->set('iframe_resizer_advanced_hosted_options.targetOrigin', $form_state->getValue('targetOrigin'));
+      ->set('iframe_resizer_advanced_hosted_options.targetOrigin', $form_state->getValue('targetOrigin'))
+      ->set('iframe_resizer_advanced_hosted_options.heightCalculationMethodOverride', $form_state->getValue('heightCalculationMethodOverride'));
 
     $config->save();
 

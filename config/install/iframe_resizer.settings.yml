@@ -27,3 +27,4 @@ iframe_resizer_advanced:
 
 iframe_resizer_advanced_hosted_options:
     targetOrigin: '*'
+    heightCalculationMethodOverride: 'parent'
