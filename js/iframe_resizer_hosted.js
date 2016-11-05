@@ -3,11 +3,11 @@
   'use strict';
 
   // Set up the iFrame Resizer library's options.
-  if (iframeResizerSettings.advancedHosted.heightCalculationMethodOverride === "parent") {
-    delete iframeResizerSettings.advancedHosted.heightCalculationMethodOverride;
+  if (iframeResizerSettings.advancedHosted.heightCalculationMethod === "parent") {
+    delete iframeResizerSettings.advancedHosted.heightCalculationMethod;
   }
-  if (iframeResizerSettings.advancedHosted.widthCalculationMethodOverride === "parent") {
-    delete iframeResizerSettings.advancedHosted.widthCalculationMethodOverride;
+  if (iframeResizerSettings.advancedHosted.widthCalculationMethod === "parent") {
+    delete iframeResizerSettings.advancedHosted.widthCalculationMethod;
   }
   window.iFrameResizer = iframeResizerSettings.advancedHosted;
 

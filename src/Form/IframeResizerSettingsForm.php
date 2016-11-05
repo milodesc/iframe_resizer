@@ -319,7 +319,7 @@ class IframeResizerSettingsForm extends ConfigFormBase {
       '#type' => 'select',
       '#title' => $this->t('iFrame Height Calculation Method Override'),
       '#description' => $this->t('Different circumstances require different methods of calculating the height of the iFramed content. The iframe resizer library default is bodyOffset.'),
-      '#default_value' => $config->get('iframe_resizer_advanced_hosted_options.heightCalculationMethodOverride'),
+      '#default_value' => $config->get('iframe_resizer_advanced_hosted_options.heightCalculationMethod'),
       '#options' =>  array(
         'parent' => t("Use parent's height calculation method"),
         'bodyOffset' => 'bodyOffset',
@@ -342,7 +342,7 @@ class IframeResizerSettingsForm extends ConfigFormBase {
       '#type' => 'select',
       '#title' => $this->t('iFrame Width Calculation Method Override'),
       '#description' => $this->t('Different circumstances require different methods of calculating the width of the iFramed content. The iframe resizer library default is bodyOffset.'),
-      '#default_value' => $config->get('iframe_resizer_advanced_hosted_options.widthCalculationMethodOverride'),
+      '#default_value' => $config->get('iframe_resizer_advanced_hosted_options.widthCalculationMethod'),
       '#options' =>  array(
         'parent' => t("Use parent's width calculation method"),
         'scroll' => 'scroll',
@@ -446,8 +446,8 @@ class IframeResizerSettingsForm extends ConfigFormBase {
       ->set('iframe_resizer_advanced.options.sizeWidth', (bool) $form_state->getValue('sizeWidth'))
       ->set('iframe_resizer_advanced.options.tolerance', (int) $form_state->getValue('tolerance'))
       ->set('iframe_resizer_advanced_hosted_options.targetOrigin', $form_state->getValue('targetOrigin'))
-      ->set('iframe_resizer_advanced_hosted_options.heightCalculationMethodOverride', $form_state->getValue('heightCalculationMethodOverride'))
-      ->set('iframe_resizer_advanced_hosted_options.widthCalculationMethodOverride', $form_state->getValue('widthCalculationMethodOverride'));
+      ->set('iframe_resizer_advanced_hosted_options.heightCalculationMethod', $form_state->getValue('heightCalculationMethodOverride'))
+      ->set('iframe_resizer_advanced_hosted_options.widthCalculationMethod', $form_state->getValue('widthCalculationMethodOverride'));
 
     $config->save();
 
