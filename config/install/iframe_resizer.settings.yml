@@ -24,3 +24,6 @@ iframe_resizer_advanced:
     sizeHeight: TRUE
     sizeWidth: FALSE
     tolerance: 0
+
+iframe_resizer_advanced_hosted_options:
+    targetOrigin: '*'

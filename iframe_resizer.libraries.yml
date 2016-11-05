@@ -25,3 +25,11 @@ init:
     - core/drupal
     - core/drupalSettings
     - iframe_resizer/iframe_resizer
+
+hosted:
+  version: VERSION
+  js:
+    js/iframe_resizer_hosted.js: {}
+  dependencies:
+    - core/drupalSettings
+    - iframe_resizer/iframe_resizer_content_window

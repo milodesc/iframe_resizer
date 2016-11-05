@@ -297,6 +297,25 @@ class IframeResizerSettingsForm extends ConfigFormBase {
       ),
     );
 
+    // Set up advanced configuration options for sites hosted resizable iFrames.
+    $form['iframe_resizer_advanced_hosted_options'] = array(
+      '#type' => 'details',
+      '#title' => t('Advanced Options for Hosted Resizable iFrames'),
+      '#open' => TRUE,
+      '#states' => array(
+        'visible' => array(
+          'input[name="hosted"]' => array('checked' => TRUE),
+        ),
+      ),
+    );
+
+    $form['iframe_resizer_advanced_hosted_options']['targetOrigin'] = array(
+      '#type' => 'textfield',
+      '#title' => t('targetOrigin'),
+      '#description' => t("Restrict the domain of the parent page to prevent other sites mimicking your parent page. Include protocol ('http://' or 'https://'). The default is '*', which does not restrict the domain of the parent page."),
+      '#default_value' => $config->get('iframe_resizer_advanced_hosted_options.targetOrigin'),
+    );
+
     $form['submit'] = [
       '#type' => 'submit',
       '#value' => $this->t('Submit'),
@@ -379,7 +398,8 @@ class IframeResizerSettingsForm extends ConfigFormBase {
       ->set('iframe_resizer_advanced.options.scrolling', (bool) $form_state->getValue('scrolling'))
       ->set('iframe_resizer_advanced.options.sizeHeight', (bool) $form_state->getValue('sizeHeight'))
       ->set('iframe_resizer_advanced.options.sizeWidth', (bool) $form_state->getValue('sizeWidth'))
-      ->set('iframe_resizer_advanced.options.tolerance', (int) $form_state->getValue('tolerance'));
+      ->set('iframe_resizer_advanced.options.tolerance', (int) $form_state->getValue('tolerance'))
+      ->set('iframe_resizer_advanced_hosted_options.targetOrigin', $form_state->getValue('targetOrigin'));
 
     $config->save();
 

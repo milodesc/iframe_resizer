@@ -48,8 +48,10 @@ function iframe_resizer_page_attachments(array &$page) {
   }
 
   // If this site will be hosted within a resizeable iframe, include the
-  // iframe resizer library's content window library file.
+  // iframe resizer library's content window library file and the config JS
+  // file.
   if ($config->get('iframe_resizer_usage.hosted')) {
-    $page['#attached']['library'][] = 'iframe_resizer/iframe_resizer_content_window';
+    $page['#attached']['library'][] = 'iframe_resizer/hosted';
+    $page['#attached']['drupalSettings']['iframeResizer']['advancedHosted'] = $config->get('iframe_resizer_advanced_hosted_options');
   }
 }
