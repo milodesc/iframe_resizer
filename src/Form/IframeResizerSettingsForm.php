@@ -338,6 +338,29 @@ class IframeResizerSettingsForm extends ConfigFormBase {
         ),
       ),
     );
+    $form['iframe_resizer_advanced_hosted_options']['widthCalculationMethodOverride'] = array(
+      '#type' => 'select',
+      '#title' => $this->t('iFrame Width Calculation Method Override'),
+      '#description' => $this->t('Different circumstances require different methods of calculating the width of the iFramed content. The iframe resizer library default is bodyOffset.'),
+      '#default_value' => $config->get('iframe_resizer_advanced_hosted_options.widthCalculationMethodOverride'),
+      '#options' =>  array(
+        'parent' => t("Use parent's width calculation method"),
+        'scroll' => 'scroll',
+        'bodyOffset' => 'bodyOffset',
+        'bodyScroll' => 'bodyScroll',
+        'documentElementOffset' => 'documentElementOffset',
+        'documentElementScroll' => 'documentElementScroll',
+        'max' => 'max',
+        'min' => 'min',
+        'rightMostElement' => 'rightMostElement',
+        'taggedElement' => 'taggedElement',
+      ),
+      '#states' => array(
+        'required' => array(
+          'input[name="override_defaults"]' => array('checked' => TRUE),
+        ),
+      ),
+    );
 
     $form['submit'] = [
       '#type' => 'submit',
@@ -423,7 +446,8 @@ class IframeResizerSettingsForm extends ConfigFormBase {
       ->set('iframe_resizer_advanced.options.sizeWidth', (bool) $form_state->getValue('sizeWidth'))
       ->set('iframe_resizer_advanced.options.tolerance', (int) $form_state->getValue('tolerance'))
       ->set('iframe_resizer_advanced_hosted_options.targetOrigin', $form_state->getValue('targetOrigin'))
-      ->set('iframe_resizer_advanced_hosted_options.heightCalculationMethodOverride', $form_state->getValue('heightCalculationMethodOverride'));
+      ->set('iframe_resizer_advanced_hosted_options.heightCalculationMethodOverride', $form_state->getValue('heightCalculationMethodOverride'))
+      ->set('iframe_resizer_advanced_hosted_options.widthCalculationMethodOverride', $form_state->getValue('widthCalculationMethodOverride'));
 
     $config->save();
 
