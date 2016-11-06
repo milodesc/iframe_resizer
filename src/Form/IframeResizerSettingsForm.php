@@ -320,7 +320,7 @@ class IframeResizerSettingsForm extends ConfigFormBase {
       '#title' => $this->t('iFrame Height Calculation Method Override'),
       '#description' => $this->t('Different circumstances require different methods of calculating the height of the iFramed content. The iframe resizer library default is bodyOffset.'),
       '#default_value' => $config->get('iframe_resizer_advanced_hosted_options.heightCalculationMethod'),
-      '#options' =>  array(
+      '#options' => array(
         'parent' => t("Use parent's height calculation method"),
         'bodyOffset' => 'bodyOffset',
         'bodyScroll' => 'bodyScroll',
@@ -343,7 +343,7 @@ class IframeResizerSettingsForm extends ConfigFormBase {
       '#title' => $this->t('iFrame Width Calculation Method Override'),
       '#description' => $this->t('Different circumstances require different methods of calculating the width of the iFramed content. The iframe resizer library default is bodyOffset.'),
       '#default_value' => $config->get('iframe_resizer_advanced_hosted_options.widthCalculationMethod'),
-      '#options' =>  array(
+      '#options' => array(
         'parent' => t("Use parent's width calculation method"),
         'scroll' => 'scroll',
         'bodyOffset' => 'bodyOffset',
