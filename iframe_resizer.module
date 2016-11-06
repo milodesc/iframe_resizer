@@ -44,6 +44,10 @@ function iframe_resizer_page_attachments(array &$page) {
     $advanced_settings['override_defaults'] = $config->get('iframe_resizer_advanced.override_defaults');
     $advanced_settings['options'] = $config->get('iframe_resizer_advanced.options');
 
+    // Give other modules the opportunity to override iframe_resizer host
+    // settings.
+    \Drupal::moduleHandler()->alter('iframe_resizer_host_settings', $advanced_settings);
+
     $page['#attached']['drupalSettings']['iframeResizer']['advanced'] = $advanced_settings;
   }
 
