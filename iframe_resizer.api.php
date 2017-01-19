@@ -22,3 +22,20 @@ function hook_iframe_resizer_host_settings_alter(&$settings) {
   $settings['options']['log'] = FALSE;
   $settings['options']['bodyBackground'] = 'green';
 }
+
+/**
+ * Override iFrame Resizer hosted settings.
+ *
+ * Implements hook_iframe_resizer_hosted_settings_alter().
+ *
+ * @param array $settings
+ *   An associative array of iFrame Resizer hosted settings. See the.
+ *
+ * @link https://github.com/davidjbradshaw/iframe-resizer iFrame Resizer
+ *   documentation @endlink for the full list of supported parameters.
+ */
+function hook_iframe_resizer_hosted_settings_alter(&$settings) {
+  // Alter the iFrame Resizer host settings.
+  $settings['targetOrigin'] = 'https://google.com';
+  $settings['heightCalculationMethod'] = 'max';
+}

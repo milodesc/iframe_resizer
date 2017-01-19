@@ -56,6 +56,11 @@ function iframe_resizer_page_attachments(array &$page) {
   // file.
   if ($config->get('iframe_resizer_usage.hosted')) {
     $page['#attached']['library'][] = 'iframe_resizer/hosted';
-    $page['#attached']['drupalSettings']['iframeResizer']['advancedHosted'] = $config->get('iframe_resizer_advanced_hosted_options');
+
+    // Give other modules the opportunity to override iframe_resizer hosted
+    // settings.
+    $advanced_hosted_settings = $config->get('iframe_resizer_advanced_hosted_options');
+    \Drupal::moduleHandler()->alter('iframe_resizer_hosted_settings', $advanced_hosted_settings);
+    $page['#attached']['drupalSettings']['iframeResizer']['advancedHosted'] = $advanced_hosted_settings;
   }
 }
